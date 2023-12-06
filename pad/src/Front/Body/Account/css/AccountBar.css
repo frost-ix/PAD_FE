@@ -1,0 +1,11 @@
+.AccountBar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    width: 20%;
+    height: 100%;
+
+    background-color: rgb(207, 188, 188);
+}

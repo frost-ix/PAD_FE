@@ -1,0 +1,13 @@
+.Account{
+    width: 70vw;
+    height: 100vh;
+    background-color: beige;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    margin-top: 7.5svh;
+}
+

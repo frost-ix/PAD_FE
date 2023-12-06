@@ -1,0 +1,12 @@
+.SignUp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+
+    height: auto;
+    width: 70vw;
+    margin-top: 7.5svh;
+    
+    background-color: beige;
+}

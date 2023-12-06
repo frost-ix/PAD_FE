@@ -1,0 +1,67 @@
+.Menubar{
+    position : fixed;
+    top : 0;
+    width: 100vw;
+    background: #6EE0FF;
+    height: 7.5vh;
+    display: flex;
+    justify-content:space-around;
+    align-items: center;
+    z-index: 100;
+}
+ 
+ .Header-logo {
+ 
+     font-size: 32px;
+     color: #fff;
+     text-decoration: none;
+     font-weight: 700;
+     transition: font-size 0.3s ease;
+ }
+ 
+ .Header-logo:hover {
+ 
+     font-size: 35px;
+     color: 	#0A6EFF;
+ }
+ 
+ .Header-navbar {
+ 
+     font-size: 18px;
+     color: #fff;
+     font-weight: 700;
+     margin-left : 230px;
+     
+     
+ }
+ 
+ .Header-nav-item{
+ 
+     position: relative;
+     color: #fff;
+     text-decoration: none;
+     margin-left: 40px;
+     transition: font-size 0.3s ease;
+ }
+ 
+ .Header-nav-item::before{
+ 
+     content: '';
+     position: absolute;
+     top: 100%;
+     left: 0;
+     width: 0;
+     height: 2px;
+     background: 	#0A6EFF;
+     transition: .3s;
+ }
+ 
+ .Header-nav-item:hover::before{
+ 
+     width: 100%;
+ }
+ 
+ .Header-nav-item:hover{
+     color: 	#0A6EFF;
+ }
+ 
