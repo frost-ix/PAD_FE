@@ -1,6 +1,64 @@
 .ChangePwd{
     height: 100%;
     width: 80%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-right: 1px solid grey;
+}
 
-    background-color: blueviolet;
+.change-pass-title b{
+    color: red;
+}
+
+.change-pass-title{
+    margin-top:30px;
+}
+
+.change-pass-input{
+
+    width: 40%;
+    height: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border: 1px solid #6EE0FF;
+    border-radius: 5px;
+    padding: 3%;
+    margin-top : 7%;
+
+}
+
+.old-pass,
+.new-pass,
+.check-pass{
+
+    width: 85%;
+    height: 15%;
+    margin-bottom: 20px;
+    padding: 1%;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.change-pass-button{
+
+    width: 85%;
+    height: 15%;
+    margin-top : 20px;
+    background: rgba(110, 224, 255, 100);
+    border : none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+
+}
+
+.change-pass-button:hover{
+
+    font-size: 15px;
+
 }

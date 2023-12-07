@@ -1,24 +1,43 @@
 import './Menubar.css';
 import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+import { login } from '../../Redux/Session';
 
 function Menubar() {
     const navigate = useNavigate();
-    const [isLoggedIn, setLoggedIn] = useState(true);
+    const dispatch = useDispatch()
+    const Session = useSelector((state) => state.Session.value)
 
     const Logout = () => {
-        navigate('/SignIn');
-        setLoggedIn(false);
+            fetch('/proxy/Logout', {
+              method: 'POST',
+            })
+              .then(response => response.json())
+              .then(data => {
+                alert("로그아웃 성공")
+                dispatch(login({
+                  memNN : null, 
+                  memID: null,
+                  memTel: null,
+                  memMail: null
+                }))
+                navigate('/SignIn');
+              })
+              .catch(error => {
+                alert("로그아웃 실패")
+                navigate('/')
+                console.error('오류 발생:', error);
+              })
     };
-
     return(
         <div className="Menubar">
             <Link to='/' className="Header-logo">PAD</Link>
             <div className="Header-navbar">
                 <Link className='Header-nav-item' to='/'>메인</Link>   
                 <Link className='Header-nav-item' to='/Hboard'>홍보</Link>
-                {isLoggedIn ? (
+                {Session.memNN ? (
                     <>
                     <Link className='Header-nav-item' to='/Account/MyAccount'>계정</Link> 
                     <span className='Header-nav-item' onClick={Logout}>로그아웃</span>
@@ -27,8 +46,8 @@ function Menubar() {
                     <>
                     <Link className='Header-nav-item' to='/SignIn'>로그인</Link>
                     {/* 개발용 */}
-                    <Link className='Header-nav-item' to='/Account/MyAccount'>계정</Link> 
-                    <span className='Header-nav-item' onClick={Logout}>로그아웃</span>
+                    {/* <Link className='Header-nav-item' to='/Account/MyAccount'>계정</Link> 
+                    <span className='Header-nav-item' onClick={Logout}>로그아웃</span> */}
                     {/* 개발용 */}
                     </>
                 )}       

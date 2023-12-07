@@ -20,7 +20,7 @@ function SignUp() {
           memTel : memTel,
           memMail : memMail
         };
-        fetch('/SignUp', {
+        fetch('/proxy/SignUp', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -31,6 +31,7 @@ function SignUp() {
           .then(data => {
             alert("회원가입 성공")
             console.log('응답 데이터:', data);
+            navigate('/SignIn')
           })
           .catch(error => {
             alert("회원가입 실패")

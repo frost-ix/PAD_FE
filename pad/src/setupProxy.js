@@ -13,9 +13,9 @@ const { createProxyMiddleware } = require('http-proxy-middleware');
 
 module.exports = function(app) {
   app.use(
-    '/',
+    '/member',
     createProxyMiddleware({
-      target: 'http://localhost:1111',
+      target: '144.24.66.249:8800',
       changeOrigin: true,
       onError: (err, req, res) => {
         console.error('Proxy Error:', err);

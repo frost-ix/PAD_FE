@@ -5,7 +5,7 @@ function Footer() {
     return(
         <div className="Footer">
             <div className='FooterLogo'>
-                <a href="https://www.shoseo.ac.kr" target="_blank">
+                <a href="https://www.shoseo.ac.kr" target="_blank" rel="noreferrer">
                     <img className="hoseologo" src={hoseologo} alt="서울호서직업전문학교" />
                 </a>
             </div>

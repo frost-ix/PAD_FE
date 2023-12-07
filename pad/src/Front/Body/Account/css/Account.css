@@ -1,6 +1,7 @@
 .Account{
     width: 70vw;
     height: 100vh;
+    /* height: auto; */
     background-color: beige;
 
     display: flex;

@@ -2,5 +2,31 @@
     height: 100%;
     width: 80%;
 
-    background-color: blueviolet;
+    background-color: white;
+    border-right: 1px solid grey;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
 }
+
+.delete-account-page{
+
+    margin: 5%;
+}
+
+.delete-account-page b{
+
+    color: red;
+}
+
+.delete-button{
+
+    width: 40%;
+    height: 20%;
+    padding: 1%;
+    margin: 3%;
+    background-color: #6EE0FF;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+

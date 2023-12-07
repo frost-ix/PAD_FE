@@ -1,8 +1,11 @@
 import './SignIn.css';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../Redux/Session';
 
 function SignIn() {
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,7 +17,8 @@ function SignIn() {
           memID : memID,
           memPW : memPW,
         };
-        fetch('/SignUp', {
+
+        fetch('/member/SignIn', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -24,6 +28,12 @@ function SignIn() {
           .then(response => response.json())
           .then(data => {
             alert("로그인 성공")
+            dispatch(login({
+              memNN:data.member.memNN, 
+              memID:data.member.memID,
+              memTel:data.member.memTel,
+              memMail:data.member.memMail
+            }))
             console.log('응답 데이터:', data);
             navigate('/')
           })
@@ -34,8 +44,6 @@ function SignIn() {
           })
       };
     return(
-
-      
         <div className="SignIn">
           <div className="card">
             <div className="signin-left">

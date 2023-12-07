@@ -1,0 +1,14 @@
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
+import { useNavigate } from 'react-router-dom';
+const navigate = useNavigate();
+
+import { useSelector } from 'react-redux' //컴포넌트에서 state조회가능하게 해주는 모듈
+const Session = useSelector((state) => state.Session.value) // 세션 state 넣기
+
+import { useDispatch } from 'react-redux';
+import { login } from '../Redux/Session';
+const dispatch = useDispatch()
+dispatch(login({name: "내 이름", age: 20, email: "email@gmail.com"}))

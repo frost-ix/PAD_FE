@@ -1,6 +1,81 @@
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+
 .MyAccount{
     height: 100%;
     width: 80%;
+    
+    background-color: #fff;
+    border-right: 1px solid grey;
+    box-shadow: -5px 0 5px rgba(0, 0, 0, 0.1);
+    font-family: 'Poppins', sans-serif;
+}
 
-    background-color: blueviolet;
+.MyAccount p{
+
+    color: 	#b4b4b4;
+}
+
+.myaccount-intro{
+
+    margin: 5%;
+}
+
+.account-list{
+
+    display: flex;
+    flex-wrap : nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 40px 30px;
+    border: 2px solid #6EE0FF;
+    border-radius: 10px;
+    width: 70%;
+    margin: 0 auto;
+    gap : 20%;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.account-list h4{
+
+    display: inline-block;
+    margin-right: 140px;
+    overflow: hidden;
+}
+.account-list h5{
+
+    display: inline-block;
+    overflow: hidden;
+}
+
+.account-list h4{
+    
+    color : #6e6e6e;
+
+}
+
+.account-list h5{
+
+    color : #828282;
+
+}
+
+.account-value{
+
+    border-bottom: 1px solid grey;
+}
+
+
+
+.change-button{
+
+    width: 100%;
+    padding: 2%;
+    background: linear-gradient(rgba(15,166,239,86), rgba(110, 224, 255, 100));
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
 }
