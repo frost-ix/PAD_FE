@@ -10,27 +10,27 @@ function Menubar() {
     const dispatch = useDispatch()
     const Session = useSelector((state) => state.Session.value)
 
-    const Logout = () => {
-            fetch('/proxy/Logout', {
-              method: 'POST',
-            })
-              .then(response => response.json())
-              .then(data => {
-                alert("로그아웃 성공")
-                dispatch(login({
-                  memNN : null, 
-                  memID: null,
-                  memTel: null,
-                  memMail: null
-                }))
+    const Logout = async() => {
+              try {
+                const response = await fetch(`/Logout`, {
+                  method: "POST",
+                });
+                if (response.ok) {
+                  alert("로그아웃 성공")
+                  dispatch(login({
+                    memNN : null, 
+                    memID: null,
+                    memTel: null,
+                    memMail: null
+                  }))
                 navigate('/SignIn');
-              })
-              .catch(error => {
-                alert("로그아웃 실패")
-                navigate('/')
-                console.error('오류 발생:', error);
-              })
-    };
+                } else {
+                  alert("로그아웃 실패");
+                }
+                } catch (error) {
+                  alert(error);
+                }};
+                
     return(
         <div className="Menubar">
             <Link to='/' className="Header-logo">PAD</Link>

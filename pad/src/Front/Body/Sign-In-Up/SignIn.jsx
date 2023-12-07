@@ -7,7 +7,7 @@ function SignIn() {
     const navigate = useNavigate();
     const dispatch = useDispatch()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
         const form = e.currentTarget;
         const memID = form.elements.memID.value;
@@ -18,31 +18,31 @@ function SignIn() {
           memPW : memPW,
         };
 
-        fetch('/member/SignIn', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(member),
-        })
-          .then(response => response.json())
-          .then(data => {
-            alert("로그인 성공")
-            dispatch(login({
-              memNN:data.member.memNN, 
-              memID:data.member.memID,
-              memTel:data.member.memTel,
-              memMail:data.member.memMail
-            }))
-            console.log('응답 데이터:', data);
-            navigate('/')
-          })
-          .catch(error => {
-            alert("로그인 실패")
-            navigate('/SignIn')
-            console.error('오류 발생:', error);
-          })
+          try {
+            const response = await fetch(`/member/SignIn`, {
+              method: "POST",
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(member),
+            });
+            if (response.ok) {
+              const data = await response.json();
+              console.log(data)
+              dispatch(login({
+                    memNN:data.memNN, 
+                    memID:data.memID,
+                    memTel:data.memTel,
+                    memMail:data.memMail}))
+              navigate('/');
+            } else {
+              alert('로그인 실패');
+            }
+            } catch (error) {
+              alert(error);
+            }
       };
+
     return(
         <div className="SignIn">
           <div className="card">

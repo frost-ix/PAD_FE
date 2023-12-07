@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 function SignUp() {
     const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.currentTarget;
         const memID = form.elements.memID.value;
@@ -20,23 +20,25 @@ function SignUp() {
           memTel : memTel,
           memMail : memMail
         };
-        fetch('/proxy/SignUp', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(member),
-        })
-          .then(response => response.json())
-          .then(data => {
+        
+        try {
+          const response = await fetch(`/member/SignUp`, {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(member),
+          });
+          if (response.ok) {
             alert("회원가입 성공")
-            console.log('응답 데이터:', data);
-            navigate('/SignIn')
-          })
-          .catch(error => {
+            navigate('/SignIn');
+          } else {
             alert("회원가입 실패")
-            console.error('오류 발생:', error);
-          })
+          }
+          } catch (error) {
+            alert(error);
+          }
+
     };
     return(
 
