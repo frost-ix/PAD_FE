@@ -12,7 +12,7 @@ function Menubar() {
 
     const Logout = async() => {
               try {
-                const response = await fetch(`/Logout`, {
+                const response = await fetch(`/proxy/Logout`, {
                   method: "POST",
                 });
                 if (response.ok) {

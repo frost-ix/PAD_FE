@@ -19,7 +19,7 @@ function SignIn() {
         };
 
           try {
-            const response = await fetch(`/member/SignIn`, {
+            const response = await fetch(`/proxy/member/SignIn`, {
               method: "POST",
               headers: {
                 'Content-Type': 'application/json',
@@ -28,7 +28,7 @@ function SignIn() {
             });
             if (response.ok) {
               const data = await response.json();
-              console.log(data)
+              // console.log(data)
               dispatch(login({
                     memNN:data.memNN, 
                     memID:data.memID,
