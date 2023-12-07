@@ -14,7 +14,7 @@ function SignIn() {
           memID : memID,
           memPW : memPW,
         };
-        fetch('/SignUp', {
+        fetch('/proxy/SignUp', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
