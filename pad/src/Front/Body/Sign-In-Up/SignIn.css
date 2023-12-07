@@ -1,12 +1,134 @@
-.SignIn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 
+
+.SignIn{
+
+    height: 100vh;
+    background-color : white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1300px;
+    /* margin-top: 7.5vh; */
+}
+
+.card {
+
+    display: flex;
+    width: 60vw;
     height: auto;
-    width: 70vw;
-    margin-top: 7.5svh;
-    
-    background-color: beige;
+    background-color: white;
+    border-radius: 10px;
+    /* min-height: 600px; */
+    height: 75%;
+    overflow: hidden;
+}
+
+.signin-left{
+
+    flex: 1;
+    background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)), url("https://st3.depositphotos.com/4431055/16129/i/450/depositphotos_161299518-stock-photo-group-of-confident-businesspeople.jpg") 
+    center ;
+    background-size: cover;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: white;
+    border-radius: 10px;
+}
+
+.signin-left-title {
+
+     
+    font-size : 100px;
+    line-height: 100px;
+    animation: fadeIn 1.5s ease-in-out
+
+}
+
+.signin-intro{
+
+    animation: fadeIn 2.5s ease-in-out;
+}
+
+.signin-ask{
+
+    font-size: 14px;
+    animation: fadeIn 4s ease-in-out;
+}
+
+.left-button{
+
+    width: 100%;
+    padding: 10px;
+    border : none;
+    background-color: white;
+    color: #0A6EFF;
+    cursor: pointer;
+    animation: fadeIn 4s ease-in-out;
+    border-radius: 5px;
+}
+
+.signin-right{
+
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+}
+
+.signin-right-title{
+
+    color: #555;
+    font-size : 50px;
+    font-weight: lighter;
+    margin: 0;
+
+}
+
+.signin-right-form{
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 0%;
+    padding-bottom: 5px;
+}
+
+.signin-id,
+.signin-pass {
+
+    border: none;
+    border-bottom : 1px solid lightgray;
+    padding: 10px 10px;
+
+}
+
+.right-button{
+
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #6EE0FF;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+
+.right-button:hover{
+
+    font-size: 15px;
 }

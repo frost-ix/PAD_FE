@@ -1,12 +1,90 @@
 .SignUp{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
 
-    height: auto;
-    width: 70vw;
-    margin-top: 7.5svh;
-    
-    background-color: beige;
+    height: 100vh;
+    background-color : white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1300px;
+}
+
+.signup-card{
+
+    display: flex;
+    width: 60vw;
+    background-color: white;
+    border-radius: 10px;
+    height: 75%;
+    overflow: hidden;
+}
+
+.signup-right{
+
+    flex: 1;
+    background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)), url("https://st3.depositphotos.com/4431055/16129/i/450/depositphotos_161299518-stock-photo-group-of-confident-businesspeople.jpg") 
+    center ;
+    background-size: cover;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    color: white;
+    border-radius: 10px;
+}
+
+.signup-right-title{
+
+    font-size: 100px;
+    line-height: 100px;
+}
+
+.signup-left{
+
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: center;
+}
+
+.signup-left-title{
+
+    color: #555;
+    font-size : 50px;
+    font-weight:lighter;
+    margin-bottom: 10px;
+}
+
+.signup-left-form{
+    /* display: flex; */
+    flex-direction: column;
+}
+
+.signup-id,
+.signup-pass,
+.signup-name,
+.signup-tel,
+.signup-mail{
+
+    /* border: 1px solid rgb(211,211,211,0.5); */
+    border: none;
+    border-bottom : 1px solid lightgray;
+    padding: 10px 10px;
+    /* margin:0; */
+    width: 90%;
+    margin-bottom: 15px;
+
+}
+
+.signup-button{
+
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #6EE0FF;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
 }

@@ -38,17 +38,37 @@ function SignUp() {
           })
     };
     return(
-        <div className="SignUp">
-            <form onSubmit={handleSubmit}>
-            <p className='plogin'>회원가입</p>
-            <input type="text" name="memID" placeholder="&nbsp;&nbsp;&nbsp;아이디" required /><br />
-            <input type="password" name="memPW" placeholder="&nbsp;&nbsp;&nbsp;비밀번호" required /><br />
-            <input type="text" name="memNN" placeholder="&nbsp;&nbsp;&nbsp;닉네임" required /><br />
-            <input type="text" name="memTel" placeholder="&nbsp;&nbsp;&nbsp;연락처" required /><br />
-            <input type="text" name="memMail" placeholder="&nbsp;&nbsp;&nbsp;이메일" required /><br />
-            <input type="submit" value="회원가입" />
-        </form>
-        </div>
+
+
+    <div className="SignUp">
+      <div className ="signup-card">
+          <div className="signup-left">
+            <form onSubmit={handleSubmit} className="signup-left-form">
+              <h3 className="signup-left-title">Sign Up</h3>
+              <input type="text" name="memID" placeholder="&nbsp;&nbsp;&nbsp;아이디" required className="signup-id"/><br />
+              <input type="password" name="memPW" placeholder="&nbsp;&nbsp;&nbsp;비밀번호" required className="signup-pass"/><br />
+              <input type="text" name="memNN" placeholder="&nbsp;&nbsp;&nbsp;닉네임" required className="signup-name"/><br />
+              <input type="text" name="memTel" placeholder="&nbsp;&nbsp;&nbsp;연락처" required className="signup-tel"/><br />
+              <input type="text" name="memMail" placeholder="&nbsp;&nbsp;&nbsp;이메일" required className="signup-mail"/><br />
+              <input type="submit" value="회원가입" className="signup-button"/>
+            </form>
+          </div>
+
+          <div className="signup-right">
+
+            {/* <h1 className="signup-right-title">PAD</h1> */}
+            <h1 className="signin-left-title">PAD</h1>
+              <p className="signin-intro">여러분을 우리 클럽에 초대합니다!<br/>
+              다양한 사람들을 초대하고<br/>
+              다양한 일들을 경험할 수 있는<br/>
+              이곳은 PAD입니다.
+              </p>
+             <span className="signin-ask">계정이 있으신가요?</span>
+              <button className="left-button" onClick={()=>navigate('/SignIn')}>Login</button>
+          </div>
+      </div>
+        
+     </div>
     )
 }
 

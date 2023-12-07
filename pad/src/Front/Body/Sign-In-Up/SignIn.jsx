@@ -14,7 +14,7 @@ function SignIn() {
           memID : memID,
           memPW : memPW,
         };
-        fetch('/proxy/SignUp', {
+        fetch('/SignUp', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -34,14 +34,35 @@ function SignIn() {
           })
       };
     return(
+
+      
         <div className="SignIn">
-            <form onSubmit={handleSubmit}>
-                <p className='plogin'>로그인</p>
-                <input type="text" name="memID" placeholder="&nbsp;아이디" required /><br />
-                <input type="password" name="memPW"placeholder="&nbsp;비밀번호" required /><br />
-                <input type="submit" value="로그인" />
-            </form>
+          <div className="card">
+            <div className="signin-left">
+
+              <h1 className="signin-left-title">PAD</h1>
+              <p className="signin-intro">여러분을 우리 클럽에 초대합니다!<br/>
+              다양한 사람들을 초대하고<br/>
+              다양한 일들을 경험할 수 있는<br/>
+              이곳은 PAD입니다.
+              </p>
+             <span className="signin-ask">계정이 없으신가요?</span>
+              <button className="left-button" onClick={()=>navigate('/SignUp')}>Sign Up</button>
+              
+
+            </div>
+
+            <div className="signin-right">
+              <h3 className="signin-right-title">Login</h3>
+              <form onSubmit={handleSubmit} className="signin-right-form">
+                <input type="text" name="memID" placeholder="&nbsp;아이디" required className="signin-id"/><br />
+                <input type="password" name="memPW"placeholder="&nbsp;비밀번호" required className="signin-pass"/><br />
+                <input type="submit" value="로그인" className="right-button"/>
+              </form>
+            </div>
         </div>
+        </div>
+      
     )
 }
 
