@@ -9,10 +9,10 @@ export const Session = createSlice({
         memMail : null
     }},
     // initialState: { value: {
-    //     memNN : "정송훈", 
+    //     memNN : "admin", 
     //     memID : "admin",
-    //     memTel : "010-7223-2241",
-    //     memMail : "h1jshmal1@naver.com"
+    //     memTel : "010-1234-1234",
+    //     memMail : "admin1@naver.com"
     // }},
     reducers: {
         login: (state, action) => {
