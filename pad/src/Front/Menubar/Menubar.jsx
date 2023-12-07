@@ -24,7 +24,13 @@ function Menubar() {
                     <span className='Header-nav-item' onClick={Logout}>로그아웃</span>
                     </>
                 ) : (
+                    <>
                     <Link className='Header-nav-item' to='/SignIn'>로그인</Link>
+                    {/* 개발용 */}
+                    <Link className='Header-nav-item' to='/Account/MyAccount'>계정</Link> 
+                    <span className='Header-nav-item' onClick={Logout}>로그아웃</span>
+                    {/* 개발용 */}
+                    </>
                 )}       
             </div>
         </div>
