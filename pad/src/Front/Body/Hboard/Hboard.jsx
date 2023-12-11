@@ -28,14 +28,16 @@ function Hboard(){
 
   //데이터 베이스에서 한 페이지 당 9개 게심물 가져오기
   const BoardAll = async () => {
-    const first = (page-1) * 9;
+    const first = {
+      currentBoardID : (page-1) * 9 + 1
+    };
         try {
-          const response = await fetch(`/proxy/boardData`, {
+          const response = await fetch(`/proxy/board/??`, {
             method: "POST",
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ first : first }),
+            body: JSON.stringify(first),
           });
           if (response.ok) {
             const data = await response.json();
@@ -51,7 +53,7 @@ function Hboard(){
   //최대 페이지 구하는 방법 
   const BoardMax = async()=>{
     try {
-          const response = await fetch(`/proxy/board-count`, {
+          const response = await fetch(`/proxy/board/??`, {
             method: "POST",
             headers: {
               'Content-Type': 'application/json',
@@ -71,72 +73,6 @@ function Hboard(){
             console.error("게시판카운트세기 실패(에러요)", error);
           }
   };
-
-
-
-    // 데이터 베이스에서 게시물값 모두 가져오기 함수
-    // const BoardGet = async () => {
-    //       const first = (page-1)*20
-      
-    //       const formData = new URLSearchParams();
-    //       formData.append("first", first);
-      
-    //       try {
-    //         const response = await fetch(`/pass/Board_Get_server`, {
-    //           method: "POST",
-    //           headers: {
-    //             "Content-Type": "application/x-www-form-urlencoded",
-    //           },
-    //           body: formData
-    //         });
-    //         const data = await response.json();
-    //         if (data.success) {
-    //           const initialData = data.values
-    //           setBoardData(initialData);
-    //           // console.log("게시판불러오기 성공");
-    //           // console.log(data.values)
-    //         } else {
-    //           // console.log("게시판불러오기 실패");
-    //         }
-    //       } catch (error) {
-    //         // console.error("게시판불러오기 실패", error);
-    //       }
-    //     };
-  
-
-
-    // 최대 페이지 구하는 함수
-    //     const BoardIndexCount = async () => {
-    //       try {
-    //         const response = await fetch(`/pass/Board_Index_Count_server`, {
-    //           method: "POST",
-    //           headers: {
-    //             "Content-Type": "application/x-www-form-urlencoded",
-    //           },
-    //         });
-      
-    //         const data = await response.json();
-    //         // console.log(data)
-    
-    //         if (data.success) {
-    //           var count = data.values[0].total_rows / 20;
-    //           count =  Math.floor(count)
-    //           if(data.values[0].total_rows % 20 >= 1){count++}
-    //           setMaxPage(count)
-    //           // console.log("게시판카운트세기 성공");
-    //         } else {
-    //           console.log("게시판카운트세기 실패");
-    //         }
-    //       } catch (error) {
-    //         console.error("게시판카운트세기 실패", error);
-    //       }
-    //     };
-  
-   
-  
-    // useEffect(()=>{
-    //   BoardIndexCount();
-    // },[boardData])
   
     return(
         <div className="Hboard">

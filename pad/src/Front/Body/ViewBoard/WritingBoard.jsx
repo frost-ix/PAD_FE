@@ -6,6 +6,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 function WritingBoard(props) {
   const [editorData, setEditorData] = useState("");
+  const [title, setTitle] = useState("");
   const navigate = useNavigate();
 
   const handleEditorChange = (event, editor) => {
@@ -13,14 +14,24 @@ function WritingBoard(props) {
     setEditorData(data);
   };
 
+  const handleEditorChange2 = (e) => {
+    const data = e.target.value
+    setTitle(data);
+  };
+
   const saveData = async () => {
     try {
-      const response = await fetch(`/proxy/board/Write`, {
+        const data = {
+            contents: editorData, 
+            boardTitle : title,
+            };
+
+        const response = await fetch(`/proxy/board/Write`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ htmlContent: editorData }),
+        body: JSON.stringify(data),
       });
       if (response.ok) {
         navigate(-1);
@@ -34,26 +45,28 @@ function WritingBoard(props) {
 
   return (
     <div className="WritingBoard">
-      <div className="WritingH2">홍보 게시판 작성</div>
       <div className="ckeditor">
-        <input type="text" name="boardTitle" className="" />
+      <h2 className="WritingH2">홍보 게시판 작성</h2>
+      <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요"/>  
+      {/* <input type="file" className="WritingFile"/> */}
         <CKEditor
           editor={ClassicEditor}
           data={editorData}
           onChange={handleEditorChange}
-          config={{
-            toolbar: {
-              items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "insertTable"],
-              shouldNotGroupWhenFull: true,
-            },
-          }}
+        //   config={{
+        //     toolbar: {
+        //       items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "insertTable"],
+        //       shouldNotGroupWhenFull: true,
+        //     },
+        //   }}
         />
       </div>
-
       <button onClick={saveData} className="saveButton">
         등록
       </button>
       <div>
+        <h3>제목</h3>
+        <p>{title}</p>
         <h3>Editor Content</h3>
         <p>{editorData}</p>
       </div>

@@ -22,7 +22,7 @@ function SignUp() {
         };
         
         try {
-          const response = await fetch(`/member/SignUp`, {
+          const response = await fetch(`/proxy/member/SignUp`, {
             method: "POST",
             headers: {
               'Content-Type': 'application/json',
