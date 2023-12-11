@@ -13,3 +13,12 @@
     height: 30px;
     background-color: sandybrown;
 }
+
+.ckeditor{
+    width: 1000px;
+    height: 50%;
+}
+
+.WritingH2{
+    font-size: 30px;
+}

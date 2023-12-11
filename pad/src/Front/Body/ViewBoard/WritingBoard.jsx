@@ -15,7 +15,7 @@ function WritingBoard(props){
 
     const saveData = async() => {
         try {
-            const response = await fetch(`/proxy/board`, {
+            const response = await fetch(`/proxy/board/writing`, {
               method: "POST",
               headers: {
                 'Content-Type': 'application/json',
@@ -34,30 +34,18 @@ function WritingBoard(props){
 
     return(      
         <div className="WritingBoard">
-            <h2>CKEditor in React</h2>
+            <div className='WritingH2'>홍보 게시판 작성</div>
+            <div className='ckeditor'>
+            <input type="text" className=''/>
             <CKEditor
-                editor={ClassicEditor}
-                data={editorData}
-                onChange={handleEditorChange}
-                config={{
-                    toolbar: [ 'heading',
-                    '|',
-                    'bold',
-                    'italic',
-                    'link',
-                    'bulletedList',
-                    'numberedList',
-                    'blockQuote',
-                    'undo',
-                    'redo',
-                    'alignment',
-                    'fontFamily',
-                    'fontSize',
-                    'fontColor',
-                    'highlight',
-                    ]
-                  }}
+            editor={ClassicEditor}
+            data={editorData}
+            onChange={handleEditorChange}
+            config={{toolbar: {items: ['undo','redo','|','heading','|','bold','italic','link','bulletedList','numberedList','insertTable'],shouldNotGroupWhenFull: true},
+            }}
             />
+            </div>
+
             <button onClick={saveData} className='saveButton'>등록</button>
             <div>
                 <h3>Editor Content</h3>
