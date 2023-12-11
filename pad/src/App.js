@@ -7,6 +7,8 @@ import Footer from './Front/Footer/Footer';
 
 import Mainmenu from './Front/Body/Mainmenu/Mainmenu';
 import Hboard from './Front/Body/Hboard/Hboard';
+import ViewBoard from './Front/Body/ViewBoard/ViewBoard';
+import WritingBoard from './Front/Body/ViewBoard/WritingBoard';
 
 import Account from './Front/Body/Account/Account';
 import MyAccount from './Front/Body/Account/MyAccount';
@@ -30,6 +32,9 @@ function App() {
         <Route path='/SignIn' element={<SignIn/>}/>
         <Route path='/SignUp' element={<SignUp/>}/>
 
+        <Route path='/ViewBoard' element={<ViewBoard/>}/>
+        <Route path='/WritingBoard' element={<WritingBoard/>}/>
+ 
         <Route path='/Account' element={<Account/>}>
           <Route path='MyAccount' element={<MyAccount/>}/>
           <Route path='MyBoard' element={<MyBoard/>}/>

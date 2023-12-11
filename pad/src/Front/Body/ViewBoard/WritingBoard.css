@@ -1,0 +1,15 @@
+.WritingBoard{
+    height: auto;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 7.5vh;
+}
+
+.saveButton{
+    width: 50px;
+    height: 30px;
+    background-color: sandybrown;
+}

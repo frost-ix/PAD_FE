@@ -1,6 +1,9 @@
 import './css/ChangePwd.css'
 
 function ChangePwd(){
+
+    // 기존 memPW
+    // 새비번 newPW
     return(
         <div className="ChangePwd">
             

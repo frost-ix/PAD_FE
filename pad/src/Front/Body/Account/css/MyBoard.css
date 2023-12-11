@@ -1,6 +1,107 @@
 .MyBoard{
     height: 100%;
+    /* height: auto; */
     width: 80%;
 
-    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    /* background-color: blueviolet; */
 }
+
+  .MyboardInTable{
+    margin-top: 5px;
+  }
+  .MyboardTable{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* background-color: #E8F5FF; */
+  }
+  .Myposterimg{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  /* table{
+    text-align: center;
+    table-layout: fixed;
+    border-spacing: 30px;
+    box-shadow: 2px;
+    width: 100%; 
+    height: 60%; 
+  }
+  td{
+    background-color: white;
+   }
+  .title{
+    font-weight: bold;
+    position: relative;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 0 0 10px 10px;
+    height: 25px;
+  }  */
+  .MyoneBoard{
+    position: relative;
+    border-radius: 5%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  }
+  .MyoneBoard:hover{
+    filter: brightness(0.5);  
+    transform: scale(1.15);
+    box-shadow: 0 14px 28px rgba(15, 124, 111, 0.25), 0 10px 10px rgba(74, 12, 12, 0.22);
+  }
+  
+  .MyoneBoard:hover::before {
+    filter: brightness(1);  
+    content: attr(data-title); /* 글씨 내용을 data-title 속성 값으로 설정*/
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black; /* 배경색과 투명도 설정*/ 
+    color: yellow;
+    width: 80%;
+    padding: 5px;
+    border-radius: 8px;
+  }
+  /* button{
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    border-color: black;
+  } */
+  
+  
+  .Mybuttondiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 30px;
+  }
+  
+  .Myprev{
+    width: 50px;
+    height: 30px;
+    margin-right: 10px;
+    background-color: transparent;
+    font-weight: bold;
+    border: 1px solid rgb(42, 42, 42);
+    border-radius: 10px;
+    color: black;
+  }
+  
+  .Mynext{
+    width: 50px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: transparent;
+    font-weight: bold;
+    border: 1px solid rgb(42, 42, 42);
+    border-radius: 10px;
+    color: black;
+  }

@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import Menubar from '../../Menubar/Menubar.jsx';
 import './Hboard.css';
 import { useState } from 'react';
 import img from './a.png';

@@ -47,7 +47,7 @@ function AccountWithdrawal(){
             );
             navigate('/');
           } else {
-            alert('회원탈퇴 실패\n비밀번호를 똑바로 입력해주세요.');
+            alert('회원탈퇴 실패\n비밀번호가 올바르지 않습니다.');
           }
         } catch (error) {
           alert(error);

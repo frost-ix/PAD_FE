@@ -12,3 +12,8 @@ import { useDispatch } from 'react-redux';
 import { login } from '../Redux/Session';
 const dispatch = useDispatch()
 dispatch(login({name: "내 이름", age: 20, email: "email@gmail.com"}))
+
+    "@ckeditor/ckeditor5-build-classic": "^40.1.0",
+    "@ckeditor/ckeditor5-editor-classic": "^40.1.0",
+    "@ckeditor/ckeditor5-image": "^40.1.0",
+    "@ckeditor/ckeditor5-react": "^6.2.0",

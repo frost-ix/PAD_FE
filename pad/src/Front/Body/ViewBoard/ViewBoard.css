@@ -1,0 +1,39 @@
+.ViewBoard{
+    height: auto;
+    width: 70vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+    margin-top: 7.5vh;
+
+    /* border: 1px solid black; */
+}
+
+.View-Table{
+    /* height: 100%; */
+    height: auto;
+    width: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-left: 1px solid rgb(0,0,0,0.1);
+    border-right: 1px solid rgb(0,0,0,0.1);
+    margin-top:5px;
+}
+
+.View-Board-Img{
+    /* max-height: 1000px;
+    max-width: 700px; */
+    height: 1000px;
+    width: 900px;
+}
+
+.View-Table-Writing{
+    height: auto;
+    width: 900px;
+    text-align: left;
+}
