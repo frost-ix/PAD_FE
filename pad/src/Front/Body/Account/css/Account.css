@@ -1,14 +1,12 @@
 .Account{
     width: 70vw;
-    height: 100vh;
+    height: 93vh;
     /* height: auto; */
-    background-color: beige;
 
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: row;
-
+    background-color: #E8F5FF;
     margin-top: 7.5svh;
 }
 
