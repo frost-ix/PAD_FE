@@ -7,6 +7,10 @@ import img from "./a.png";
 function Hboard() {
   const navigate = useNavigate();
   const [boardData, setBoardData] = useState([]);
+  //기본 셋팅 페이지 변수, 함수
+  const [page, setPage] = useState(1);
+  //가장 최대 페이지 변수, 함수
+  const [maxPage, setMaxPage] = useState();  
 
   const chunkArray = (arr, chunkSize) => {
     const result = [];
@@ -16,10 +20,6 @@ function Hboard() {
     return result;
   };
   const chunkedDataArray = chunkArray(boardData, 3);
-  //기본 셋팅 페이지 변수, 함수
-  const [page, setPage] = useState(1);
-  //가장 최대 페이지 변수, 함수
-  const [maxPage, setMaxPage] = useState();
 
   //page 변수 부분이 달라 질 떄 마다 BoardAll부분이 실행
   useEffect(() => {
@@ -93,7 +93,7 @@ function Hboard() {
                     className="oneBoard"
                     data-title={item.boardTitle}
                     onClick={() => {
-                      navigate("/");
+                      navigate("/ViewBoard",{ state : item.boardID });
                     }}
                   >
                     <div className="imgposter">
