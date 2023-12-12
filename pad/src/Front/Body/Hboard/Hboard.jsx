@@ -91,14 +91,13 @@ function Hboard() {
                 {rowItems.map((item) => (
                   <td
                     className="oneBoard"
-                    data-title={item.boardTitle}
                     onClick={() => {
                       navigate("/ViewBoard",{ state : item.boardID });
-                    }}
-                  >
-                    <div className="imgposter">
-                      <img src={img} alt={item.boardTitle} className="posterimg" />
-                    </div>
+                    }}>
+              <div className="dataTitles"><span>{item.boardTitle}</span></div>
+
+              <img src={img}  className="posterimg" />
+                 
                   </td>
                 ))}
               </tr>
