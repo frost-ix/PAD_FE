@@ -1,91 +1,13 @@
-// import "./WritingBoard.css";
-// import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { CKEditor } from "@ckeditor/ckeditor5-react";
-// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
-// function WritingBoard(props) {
-//   const [editorData, setEditorData] = useState("내용을 입력해 주세요.");
-//   const [title, setTitle] = useState("");
-//   const navigate = useNavigate();
-
-//   const handleEditorChange = (event, editor) => {
-//     const data = editor.getData();
-//     setEditorData(data);
-//   };
-
-//   const handleEditorChange2 = (e) => {
-//     const data = e.target.value
-//     setTitle(data);
-//   };
-
-
-//   const saveData = async () => {
-//     try {
-//         const formData = new FormData();
-//         formData.append("contents", editorData);
-//         formData.append("boardTitle", title);
-
-//         const response = await fetch(`/proxy/board/Write`, {
-//         method: "POST",
-//         body: formData,
-//       });
-//       if (response.ok) {
-//         navigate(-1);
-//       } else {
-//         alert("게시판 올리기 실패");
-//       }
-//     } catch (error) {
-//       alert(error);
-//     }
-//   };
-
-//   return (
-//     <div className="WritingBoard">
-//       <div className="ckeditor">
-//       <div className="WritingH2-div">
-//         <h2 className="WritingH2">홍보 게시물 쓰기</h2>
-//       </div>
-//       <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요"/>  
-//         <CKEditor
-//           editor={ClassicEditor}
-//           data={editorData}
-//           onChange={handleEditorChange}
-//           config={{
-//             toolbar: {
-//               items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "uploadImage"],
-//               shouldNotGroupWhenFull: true,
-//             },
-//              ckfinder: {
-//                uploadUrl: '/proxy/image' // 서버 측 업로드 URL 지정
-//              }
-//           }}
-//         />
-//       </div>
-//       <button onClick={saveData} className="saveButton">
-//         등록
-//       </button>
-//       <div>
-//         <h3>제목</h3>
-//         <p>{title}</p>
-//         <h3>Editor Content</h3>
-//         <p>{editorData}</p>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default WritingBoard;
-
 import "./WritingBoard.css";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-function WritingBoard(props) {
+function WritingBoard() {
   const [editorData, setEditorData] = useState("내용을 입력해 주세요.");
   const [title, setTitle] = useState("");
+  const [imgName, setImgName] = useState();
   const navigate = useNavigate();
 
   const handleEditorChange = (event, editor) => {
@@ -101,18 +23,21 @@ function WritingBoard(props) {
 
   const saveData = async () => {
     try {
-        const formData = new FormData();
-        // formData.append("contents", editorData);
-        formData.append("htmlContent", editorData);
-        formData.append("boardTitle", title);
+        const data = { 
+          boardTitle : title,
+          contents : editorData,
+          imgName : imgName
+        }
 
         const response = await fetch(`/proxy/board/Write`, {
         method: "POST",
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body : JSON.stringify(data)
       });
       if (response.ok) {
         // navigate(-1);
-        console.log(editorData)
       } else {
         alert("게시판 올리기 실패");
       }
@@ -138,7 +63,9 @@ function WritingBoard(props) {
                                           body: data,
                                         });
                                         if (response.ok) {
-                                          // navigate(-1);
+                                          const data = await response.json();
+                                          console.log(data.imgName)
+                                          setImgName(data.imgName)
                                         } else {
                                           alert("사진업로드 실패");
                                         }
@@ -169,7 +96,7 @@ function WritingBoard(props) {
           onChange={handleEditorChange}
           config={{
             toolbar: {
-              items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "uploadImage"],
+              items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList","|", "uploadImage"],
               shouldNotGroupWhenFull: true,
             },extraPlugins: [uploadPlugin]
           }}
