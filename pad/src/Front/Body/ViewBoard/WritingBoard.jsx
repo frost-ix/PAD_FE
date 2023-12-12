@@ -74,7 +74,7 @@ function WritingBoard() {
                         data.append("file", file);
                         data.append("option", "upload")
                         try {
-                              const response = await fetch('/proxy/image', {
+                              const response = await fetch('/proxy/board/image', {
                               method: "POST",
                               body: data,
                               });
@@ -85,7 +85,7 @@ function WritingBoard() {
                                   alert("사진업로드 실패");
                                   }
                                   } catch (error) {
-                                  alert(error);
+                                  alert(error+"사진업로드");
                                    }
   })})}}}
 
@@ -105,7 +105,7 @@ function WritingBoard() {
             option : "delete"
           }
   
-        const response = await fetch(`/proxy/image/de`, {
+        const response = await fetch(`/proxy/board/image`, {
         method: "POST",
         body : JSON.stringify(data)
       });
@@ -128,13 +128,8 @@ function WritingBoard() {
     setImageInformation(updatedInformation);
     }, [move]);
 
-    // const server_delete = async(imgIdd) => {
-     
-    // }
-
     const deleteImgId= (value) =>{
       setMove(value)
-      // server_delete(value)
     }
   
     const insertImgId= (value) =>{
