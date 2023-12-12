@@ -98,16 +98,15 @@ function WritingBoard() {
     useEffect(() => {
       const del = async()=>{
         try {
+          
           const targetObject = imageInformation.find(obj => obj.imgId == move);
           const imgNameval = targetObject.imgName;
-          const data = { 
-            imgName : imgNameval,
-            option : "delete"
-          }
-  
+          const data = new FormData();
+          data.append("imgName", imgNameval);
+          data.append("option", "upload");
         const response = await fetch(`/proxy/board/image`, {
         method: "POST",
-        body : JSON.stringify(data)
+        body : data
       });
       if (response.ok) {
         
