@@ -9,19 +9,13 @@ function Account(){
     const navigate = useNavigate();
     const Session = useSelector((state) => state.Session.value) // 세션 state 넣기
 
-    useEffect(()=>{
-        if(Session.memNN === null){
-            alert("로그인 후 이용해주세요")
-            navigate('/SignIn') 
-        }
-    },[navigate])
-
-    // if (Session.memNN === null) {
-    //     alert("로그인 후 이용해주세요");
-    //     navigate('/SignIn');
-    //     return null; // 리디렉션 후 컴포넌트를 렌더링하지 않음
-    //   }
-
+    // useEffect(()=>{
+    //     if(Session.memNN === null){
+    //         alert("로그인 후 이용해주세요")
+    //         navigate('/SignIn') 
+    //     }
+    // },[navigate])
+    
     return(
         <div className="Account">
             <Accountbar/>
