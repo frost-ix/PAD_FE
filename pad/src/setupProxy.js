@@ -4,7 +4,8 @@ module.exports = function(app) {
   app.use(
     '/proxy',
     createProxyMiddleware({
-      target: 'http://1.209.148.143:8800',
+      // target: 'http://1.209.148.143:8800',
+      target: 'http://localhost:8800',
       changeOrigin: true,
       onError: (err, req, res) => {
         console.error('Proxy Error:', err);
