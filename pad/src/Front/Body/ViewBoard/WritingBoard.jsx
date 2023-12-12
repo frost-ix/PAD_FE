@@ -7,7 +7,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 function WritingBoard() {
   const [editorData, setEditorData] = useState("내용을 입력해 주세요.");
   const [title, setTitle] = useState("");
-  const [imgName, setImgName] = useState();
+  const [imgName, setImgName] = useState([]);
   const navigate = useNavigate();
 
   const handleEditorChange = (event, editor) => {
@@ -19,6 +19,13 @@ function WritingBoard() {
     const data = e.target.value
     setTitle(data);
   };
+  
+    const imgDelete = (indexToRemove) => {
+      const updatedImgName = imgName.filter((name, index) => index !== indexToRemove);
+      setImgName(updatedImgName);
+    };
+    
+  
 
 
   const saveData = async () => {
@@ -46,39 +53,31 @@ function WritingBoard() {
     }
   };
 
-  const [flag, setFlag] = useState(false);
-  const imgLink = "http://localhost:5000/images/"
-
   const customUploadAdapter = (loader) => {
       return {
-          upload(){
+              upload(){
               return new Promise ((resolve, reject) => {
-                  const data = new FormData();
-                   loader.file.then( async (file) => {
-                          // data.append("name", file.name);
-                          data.append("file", file);
-                          try {
-                                 const response = await fetch('/proxy/image', {
-                                       method: "POST",
-                                          body: data,
-                                        });
-                                        if (response.ok) {
-                                          const data = await response.json();
-                                          console.log(data.imgName)
-                                          setImgName(data.imgName)
-                                        } else {
-                                          alert("사진업로드 실패");
-                                        }
-                                      } catch (error) {
-                                        alert(error);
-                                      }
-                      })
-              })
-          }
-      }
-  }
+                    const data = new FormData();
+                    loader.file.then( async (file) => {
+                        data.append("file", file);
+                        try {
+                              const response = await fetch('/proxy/image', {
+                              method: "POST",
+                              body: data,
+                              });
+                              if (response.ok) {
+                                  const data = await response.json();
+                                  console.log(data.imgName)
+                                  setImgName((imgName) => [...imgName, data.imgName])
+                                  } else {
+                                  alert("사진업로드 실패");
+                                  }
+                                  } catch (error) {
+                                  alert(error);
+                                   }
+  })})}}}
 
-  function uploadPlugin (editor){ // (3)
+  function uploadPlugin (editor){
       editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
           return customUploadAdapter(loader);
       }
@@ -110,6 +109,15 @@ function WritingBoard() {
         <p>{title}</p>
         <h3>Editor Content</h3>
         <p>{editorData}</p>
+
+        <h3>사용중 이미지</h3>
+        {imgName.map((imgName, index) => (
+        <div key={index}>
+          {index + 1}. {imgName} 
+          <button onClick={() => imgDelete(index)}>Delete</button>
+        </div>
+        ))}
+
       </div>
     </div>
   );
