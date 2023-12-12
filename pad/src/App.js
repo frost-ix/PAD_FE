@@ -18,6 +18,8 @@ import Bookmark from './Front/Body/Account/Bookmark';
 import AccountWithdrawal from './Front/Body/Account/AccountWithdrawal';
 import SignIn from './Front/Body/Sign-In-Up/SignIn';
 import SignUp from './Front/Body/Sign-In-Up/SignUp';
+import Question from './Front/Body/Mainmenu/Question'
+import Company from './Front/Body/Mainmenu/Company'
 
 function App() {
   return (
@@ -31,6 +33,9 @@ function App() {
 
         <Route path='/SignIn' element={<SignIn/>}/>
         <Route path='/SignUp' element={<SignUp/>}/>
+
+        <Route path='/Question' element={<Question/>}/>
+        <Route path='/Company' element={<Company/>}/>
 
         <Route path='/ViewBoard' element={<ViewBoard/>}/>
         <Route path='/WritingBoard' element={<WritingBoard/>}/>

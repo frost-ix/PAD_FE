@@ -98,7 +98,6 @@ function WritingBoard() {
     useEffect(() => {
       const del = async()=>{
         try {
-          
           const targetObject = imageInformation.find(obj => obj.imgId == move);
           const imgNameval = targetObject.imgName;
           const data = new FormData();

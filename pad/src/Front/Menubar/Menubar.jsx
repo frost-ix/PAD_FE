@@ -25,7 +25,7 @@ function Menubar() {
             memMail: null,
           })
         );
-        navigate("/SignIn");
+        navigate("/");
       } else {
         alert("로그아웃 실패");
       }
