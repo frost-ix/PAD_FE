@@ -94,10 +94,12 @@ function WritingBoard() {
     const save = async() => {
       try {
         const imgNames = imageInformation.map(info => info.imgName);
+        console.log(imgNames)
+        const flatArray = imgNames.flat();
           const data = { 
             boardTitle : title,
             contents : editorData,
-            imgName : imgNames,
+            imgName : flatArray,
             cateName : cateselect
           }
   
