@@ -6,7 +6,22 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 
 function WritingBoard() {
-  const [editorData, setEditorData] = useState("내용을 입력해 주세요.");
+  const [editorData, setEditorData] = useState(
+      `<p>안녕하세요!</p>
+      <p>&nbsp;</p>
+      <p>홍보 게시판을 이용해 주셔서 감사합니다. 이 공간은 회원 여러분이 자신의</p> 
+      <p>이벤트, 프로모션, 또는 다양한 홍보 활동을 공유하고 소개할 수 있는 곳입니다.</p>
+      <p>-------------------------------------------------------------------------------------------------------------------------</p>
+      <p>주의사항</p>
+      <p>&nbsp;</p>
+      <p>욕설 및 비방 글은 삼가주세요.상호 존중과 예의가 중요합니다.</p>
+      <p>불법적인 활동이나 부적절한 콘텐츠는 금지됩니다.이는 서비스 이용 약관에 따라 엄격히 제한됩니다.</p>
+      <p>&nbsp;</p>
+      <p>문제 발생 시 도움이 필요하신 경우, 고객지원팀에 문의해 주세요.
+      <p>즐거운 홍보 활동 되시길 바랍니다!</p>
+      <p>&nbsp;</p>
+      <p>감사합니다.</p>`
+    );
   const [title, setTitle] = useState("");
   const [cate, setCate] = useState();
   const [imgName, setImgName] = useState();
@@ -58,30 +73,40 @@ function WritingBoard() {
     setTitle(data);
   };
 
-  const saveData = async () => {
-    try {
-      const imgNames = imageInformation.map(info => info.imgName);
-        const data = { 
-          boardTitle : title,
-          contents : editorData,
-          imgName : imgNames,
-          cateName : cateselect
+  const saveData = () => {
+    const save = async() => {
+      try {
+        const imgNames = imageInformation.map(info => info.imgName);
+          const data = { 
+            boardTitle : title,
+            contents : editorData,
+            imgName : imgNames,
+            cateName : cateselect
+          }
+  
+          const response = await fetch(`/proxy/board/Write`, {
+          method: "POST",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body : JSON.stringify(data)
+        });
+        if (response.ok) {
+          navigate(-1);
+        } else {
+          alert("게시판 올리기 실패");
         }
-
-        const response = await fetch(`/proxy/board/Write`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body : JSON.stringify(data)
-      });
-      if (response.ok) {
-        navigate(-1);
-      } else {
-        alert("게시판 올리기 실패");
+      } catch (error) {
+        alert(error);
       }
-    } catch (error) {
-      alert(error);
+    }
+
+    if(title == null | title == ""){
+      alert("제목을 입력해주세요")
+    }else if(editorData == null | editorData == ""){
+      alert("내용을 입력해주세요")
+    }else{
+      save()
     }
   };
 
@@ -158,7 +183,9 @@ function WritingBoard() {
   return (
     <div className="WritingBoard">
       <div className="ckeditor">
-      <div className="WritingH2-div"><h2 className="WritingH2">홍보 글쓰기</h2></div>
+      <div className="WritingH2-div">
+        <h2 className="WritingH2">홍보 글쓰기</h2>
+        <button onClick={saveData} className="saveButton">등록</button></div>
       <div className="cate-div">
         {/* ------------------------------------자동완성기능 보류 */}
         {/* <input type="text" className="cate-input" list="categories" placeholder="카테고리 선택" onChange={(e)=> {setCateselect(e.target.value)}}/>
@@ -173,7 +200,8 @@ function WritingBoard() {
         )}
         </datalist> */}
         {/* ------------------------------------자동완성기능 보류 */}
-        <select className="cate-input" value={cateselect} onChange={(e)=> {setCateselect(e.target.value)}}>
+        
+        <select className="cate-input" value={cateselect} onChange={(e)=> {setCateselect(e.target.value)}} required>
         <option value="" disabled>카테고리 선택</option>
         {cate ? (
           <>
@@ -187,7 +215,7 @@ function WritingBoard() {
       </select>
       </div>
 
-      <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요"/>  
+      <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요" required/>  
         <CKEditor
           editor={ClassicEditor}
           data={editorData}
@@ -197,7 +225,7 @@ function WritingBoard() {
               items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList","|", "uploadImage"],
               shouldNotGroupWhenFull: true,
             },extraPlugins: [uploadPlugin]
-          }}
+            }}
             onReady={(editor) => {
               editor.model.document.on('change:data', () => {
                 const changes = Array.from(editor.model.document.differ.getChanges());
@@ -220,9 +248,8 @@ function WritingBoard() {
             }}
         />
       </div>
-      <button onClick={saveData} className="saveButton">
-        등록
-      </button>
+      
+      
 {/* -----------------------테스트--------------------- */}
       {/* {editorData} */}
       {/* {imgId.map((item, index) => (
@@ -237,11 +264,11 @@ function WritingBoard() {
         </div>
       ))}  */}
       
-      {/* {imageInformation.map((item, index) => (
+      {imageInformation.map((item, index) => (
         <div key={index}>
           {index}번쨰 사진 이름 : {item.imgId}
         </div>
-      ))} */}
+      ))}
 
       {/* {cate.map((item, index) => (
           <div key={index}>

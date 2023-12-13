@@ -3,13 +3,17 @@
   justify-content: center;
   flex-direction: row;
   width: 70vw;
+  max-height: 88vh;
   margin-top: 7.5svh;
   background-color: #E8F5FF;
 }
 .HboardBar{
-  height: 100%;
+  height: auto;
   width: 20%;
-  background-color:   #DCEBFF;
+  border-left: 1px solid grey;
+  border-right: 1px solid rgb(128,128,128,0.1);
+  background-color: #E8F5FF;
+  padding: 20px;
 }
 .HboardTable{
   height: auto;
@@ -96,7 +100,7 @@ button{
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  margin-top: 30px;
+  /* margin-top: 10px; */
   margin-bottom: 30px;
 }
 
@@ -121,3 +125,71 @@ button{
   border-radius: 10px;
   color: black;
 }
+
+.big-cate{
+  height: 6%;
+  width: 68%;
+  background-color:#A5D8FA;
+  color: white;
+  padding: 40px;
+  cursor: pointer;
+}
+
+.big-cate i{
+
+  margin-right: 10%;
+  font-size: 30px;
+
+}
+.big-cate span{
+
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+#first-big-cate{
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+#last-big-cate{
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.small-cate{
+
+  width: 80%;
+  display: none;
+  flex-direction: column;
+  margin-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: rgba(0,0,0,0.1);
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 5px;
+}
+
+.big-cate:hover{
+  color: #64A0FF;
+}
+.big-cate:hover .small-cate{
+  display: block;
+
+}
+
+.small-cate a{
+
+  text-decoration: none;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-weight: bolder;
+  font-size: 16px;
+
+}
+
+.small-cate a:hover{
+  color: #64A0FF;
+  transform:scale(1.1);
+}
+
