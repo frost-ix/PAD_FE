@@ -36,37 +36,19 @@ function Menubar() {
 
   return (
     <div className="Menubar">
-      <Link to="/" className="Header-logo">
-        PAD
-      </Link>
+      <Link to="/" className="Header-logo">PAD</Link>
       <div className="Header-navbar">
-        <Link className="Header-nav-item" to="/">
-          메인
-        </Link>
-        <Link className="Header-nav-item" to="/Hboard">
-          홍보
-        </Link>
+        <Link className="Header-nav-item" to="/">메인</Link>
+        <Link className="Header-nav-item" to="/Hboard">홍보</Link>
         {Session.memNN ? (
           <>
-            <Link className="Header-nav-item" to="/WritingBoard">
-              글쓰기
-            </Link>
-            <Link className="Header-nav-item" to="/Account/MyAccount">
-              계정
-            </Link>
-            <span className="Header-nav-item" onClick={Logout}>
-              로그아웃
-            </span>
+            <Link className="Header-nav-item" to="/WritingBoard">글쓰기</Link>
+            <Link className="Header-nav-item" to="/Account/MyAccount">계정</Link>
+            <span className="Header-nav-item" onClick={Logout}>로그아웃</span>
           </>
         ) : (
           <>
-            <Link className="Header-nav-item" to="/SignIn">
-              로그인
-            </Link>
-            {/* 개발용 */}
-            {/* <Link className='Header-nav-item' to='/Account/MyAccount'>계정</Link> 
-                    <span className='Header-nav-item' onClick={Logout}>로그아웃</span> */}
-            {/* 개발용 */}
+            <Link className="Header-nav-item" to="/SignIn">로그인</Link>
           </>
         )}
       </div>

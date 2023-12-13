@@ -1,6 +1,11 @@
 //모듈 임포트
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { login } from './Redux/Session';
+
 //컴포넌트 임포트
 import Menubar from './Front/Menubar/Menubar';
 import Footer from './Front/Footer/Footer';
@@ -22,6 +27,33 @@ import Question from './Front/Body/Mainmenu/Question'
 import Company from './Front/Body/Mainmenu/Company'
 
 function App() {
+  const Session = useSelector((state) => state.Session.value)
+  const dispatch = useDispatch()
+  useEffect(()=>{
+    const SessionServer = async () => {
+      try {
+        const response = await fetch(`/proxy/session`, {
+          method: "POST",
+        });
+        if (response.ok) {
+          const data = await response.json()
+          console.log(data)
+          dispatch(login({
+            memNN:data.memNN, 
+            memID:data.memID,
+            memTel:data.memTel,
+            memMail:data.memMail}))
+        } else {
+          // console.log("세션없음")
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+    if(Session.memNN == null){
+      SessionServer();
+    }
+  },[])
   return (
     <div className="App">
       <BrowserRouter>

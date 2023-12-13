@@ -28,7 +28,7 @@ function Hboard() {
   //최대 페이지의 개수 부분이 달라 질 때 마다 BoardMax 실행
   useEffect(() => {
     BoardMax();
-  }, [maxPage]);
+  }, []);
 
   //데이터 베이스에서 한 페이지 당 9개 게심물 가져오기
   const BoardAll = async () => {
@@ -65,6 +65,7 @@ function Hboard() {
       });
       if (response.ok) {
         const data = await response.json();
+        console.log(data+"카운터")
         var count = data / 9;
         count = Math.floor(count);
         if (data % 9 > 0) {
