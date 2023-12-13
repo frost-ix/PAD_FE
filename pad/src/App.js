@@ -6,6 +6,8 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from './Redux/Session';
 
+
+
 //컴포넌트 임포트
 import Menubar from './Front/Menubar/Menubar';
 import Footer from './Front/Footer/Footer';
@@ -25,10 +27,12 @@ import SignIn from './Front/Body/Sign-In-Up/SignIn';
 import SignUp from './Front/Body/Sign-In-Up/SignUp';
 import Question from './Front/Body/Mainmenu/Question'
 import Company from './Front/Body/Mainmenu/Company'
+import Nomainmenu from './Front/Body/Mainmenu/Nomainmenu'
 
 function App() {
   const Session = useSelector((state) => state.Session.value)
   const dispatch = useDispatch()
+  
   useEffect(()=>{
     const SessionServer = async () => {
       try {
@@ -37,7 +41,6 @@ function App() {
         });
         if (response.ok) {
           const data = await response.json()
-          console.log(data)
           dispatch(login({
             memNN:data.memNN, 
             memID:data.memID,
@@ -54,6 +57,7 @@ function App() {
       SessionServer();
     }
   },[])
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -71,6 +75,7 @@ function App() {
 
         <Route path='/ViewBoard' element={<ViewBoard/>}/>
         <Route path='/WritingBoard' element={<WritingBoard/>}/>
+        <Route path='/Nomainmenu' element={<Nomainmenu/>}/>
  
         <Route path='/Account' element={<Account/>}>
           <Route path='MyAccount' element={<MyAccount/>}/>
