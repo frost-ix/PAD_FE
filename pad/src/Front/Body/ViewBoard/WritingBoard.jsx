@@ -4,14 +4,38 @@ import { useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
+
 function WritingBoard() {
   const [editorData, setEditorData] = useState("내용을 입력해 주세요.");
   const [title, setTitle] = useState("");
+  const [cate, setCate] = useState();
   const [imgName, setImgName] = useState();
   const [imgId, setImgId] = useState();
   const [imageInformation,setImageInformation] = useState([]);
   const [move, setMove]=useState();
+  const [cateselect, setCateselect] = useState();
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const cateServer = async () => {
+      try {
+        const response = await fetch(`/proxy/board/cate`, {
+          method: "POST",
+        });
+        if (response.ok) {
+          const data = await response.json()
+          setCate(data)
+        } else {
+          // console.log("카테고리 못가져옴")
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+    if(cate == null){
+      cateServer();
+    }
+  },[])
 
   useEffect(() => {
     if(imgId != null && imgName != null){
@@ -23,10 +47,6 @@ function WritingBoard() {
       setImgName(null)
     }
   }, [imgId, imgName]);
-  
-  useEffect(() => {
-      console.log("정보",imageInformation)
-  }, [imageInformation]);
 
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
@@ -44,7 +64,8 @@ function WritingBoard() {
         const data = { 
           boardTitle : title,
           contents : editorData,
-          imgName : imgNames
+          imgName : imgNames,
+          cateName : cateselect
         }
 
         const response = await fetch(`/proxy/board/Write`, {
@@ -133,13 +154,25 @@ function WritingBoard() {
     const insertImgId= (value) =>{
       setImgId(value)
     }
-
+    
   return (
     <div className="WritingBoard">
       <div className="ckeditor">
-      <div className="WritingH2-div">
-        <h2 className="WritingH2">홍보 게시물 쓰기</h2>
+      <div className="WritingH2-div"><h2 className="WritingH2">홍보 게시물 쓰기</h2></div>
+      <div className="cate-div">
+        <input type="text" className="cate-input" list="categories" placeholder="카테고리 선택" onChange={(e)=> {setCateselect(e.target.value)}}/>
+        <datalist id="categories" className="cate-list" >
+        {cate ? (
+          <>
+          {cate.map((item, index) => (
+          <option key={index} value={item.value} label={item.name}/>))}
+          </>
+        ) : (
+        <option value="카테고리오류">카테고리 오류</option>
+        )}
+        </datalist>
       </div>
+
       <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요"/>  
         <CKEditor
           editor={ClassicEditor}
@@ -177,7 +210,7 @@ function WritingBoard() {
         등록
       </button>
 {/* -----------------------테스트--------------------- */}
-            {/* {editorData} */}
+      {/* {editorData} */}
       {/* {imgId.map((item, index) => (
         <div key={index}>
           {index}번쨰 사진 아이디 : {item}
@@ -195,6 +228,13 @@ function WritingBoard() {
           {index}번쨰 사진 이름 : {item.imgId}
         </div>
       ))} */}
+
+      {/* {cate.map((item, index) => (
+          <div key={index}>
+            {item.name} : {item.value}
+          </div>
+        ))} */}
+        {/* {cateselect} */}
 {/* -------------------------------------------- */}
     </div>
   );

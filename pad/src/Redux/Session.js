@@ -8,12 +8,6 @@ export const Session = createSlice({
         memTel : null,
         memMail : null
     }},
-    // initialState: { value: {
-    //     memNN : "admin", 
-    //     memID : "admin",
-    //     memTel : "010-1234-1234",
-    //     memMail : "admin1@naver.com"
-    // }},
     reducers: {
         login: (state, action) => {
             state.value = action.payload

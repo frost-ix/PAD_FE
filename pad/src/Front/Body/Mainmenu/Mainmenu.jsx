@@ -28,17 +28,6 @@ function Mainmenu(){
         autoplaySpeed: 5000
     };
     return(
-        Session.memNN == null ?  (
-        <div className="Mainmenu">
-            <div className="main-title">
-                <h1>오늘은 어떤 소식이 있을까요?</h1>
-                <p>PAD에서 여러분의 아이디어를 홍보하세요!</p>
-                <button className="main-button" onClick={()=>navigate('/SignUp')}>무료로 가입하기</button>
-            </div>
-            <div className="main-comp" >
-            </div>
-        </div>
-        ):(
         <div className="LoginAfter">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
         <div className="popular">
@@ -131,7 +120,6 @@ function Mainmenu(){
             </div>
         </div>
         </div> 
-      )
       )
 }
 
