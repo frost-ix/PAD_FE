@@ -7,10 +7,37 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react';
 
 function Mainmenu(){
     const Session = useSelector((state) => state.Session.value)
     const navigate = new useNavigate();
+
+    const [mainNotice, setMainNotice] = useState();
+    const [latestBoard, setLatestBoard] = useState();
+
+    useEffect(()=>{
+        const response = fetch('/proxy/notice/mainNotice', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(json => {setMainNotice(json)
+            console.log(json)});
+    
+        const response2 = fetch('/proxy/board/latestBoard', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then(res => res.json())
+        .then(json => {setLatestBoard(json)
+            console.log(json)});
+    },[])
+
     
     const calling = () =>{
 
@@ -38,26 +65,6 @@ function Mainmenu(){
                     <div className="img-value">
                         <img src={open}></img>
                         <h2>오펜하이머</h2>
-                    </div>
-                    <div className="img-value">
-                        <img src={sang}></img>
-                        <h2>상견니</h2>
-                    </div>    
-                    <div className="img-value">
-                        <img src={war}></img>
-                        <h2>1917</h2>
-                    </div>
-                    <div className="img-value">
-                        <img src={war}></img>
-                        <h2>1917</h2>
-                    </div>
-                    <div className="img-value">
-                        <img src={war}></img>
-                        <h2>1917</h2>
-                    </div>
-                    <div className="img-value">
-                        <img src={war}></img>
-                        <h2>1917</h2>
                     </div>
                     </Slider>
             </div>

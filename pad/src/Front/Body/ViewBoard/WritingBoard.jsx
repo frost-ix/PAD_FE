@@ -158,9 +158,10 @@ function WritingBoard() {
   return (
     <div className="WritingBoard">
       <div className="ckeditor">
-      <div className="WritingH2-div"><h2 className="WritingH2">홍보 게시물 쓰기</h2></div>
+      <div className="WritingH2-div"><h2 className="WritingH2">홍보 글쓰기</h2></div>
       <div className="cate-div">
-        <input type="text" className="cate-input" list="categories" placeholder="카테고리 선택" onChange={(e)=> {setCateselect(e.target.value)}}/>
+        {/* ------------------------------------자동완성기능 보류 */}
+        {/* <input type="text" className="cate-input" list="categories" placeholder="카테고리 선택" onChange={(e)=> {setCateselect(e.target.value)}}/>
         <datalist id="categories" className="cate-list" >
         {cate ? (
           <>
@@ -170,7 +171,20 @@ function WritingBoard() {
         ) : (
         <option value="카테고리오류">카테고리 오류</option>
         )}
-        </datalist>
+        </datalist> */}
+        {/* ------------------------------------자동완성기능 보류 */}
+        <select className="cate-input" value={cateselect} onChange={(e)=> {setCateselect(e.target.value)}}>
+        <option value="" disabled>카테고리 선택</option>
+        {cate ? (
+          <>
+            {cate.map((item, index) => (
+              <option key={index} value={item.value}>{item.name}</option>
+            ))}
+          </>
+        ) : (
+          <option value="카테고리오류">카테고리 오류</option>
+        )}
+      </select>
       </div>
 
       <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요"/>  
