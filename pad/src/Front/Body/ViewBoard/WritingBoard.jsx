@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-
 function WritingBoard() {
   const [editorData, setEditorData] = useState(
       `<p>안녕하세요!</p>
@@ -26,20 +25,20 @@ function WritingBoard() {
   const [cate, setCate] = useState();
   const [imgName, setImgName] = useState();
   const [imgId, setImgId] = useState();
-  const [imageInformation,setImageInformation] = useState([]);
-  const [move, setMove]=useState();
+  const [imageInformation, setImageInformation] = useState([]);
+  const [move, setMove] = useState();
   const [cateselect, setCateselect] = useState();
   const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     const cateServer = async () => {
       try {
         const response = await fetch(`/proxy/board/cate`, {
           method: "POST",
         });
         if (response.ok) {
-          const data = await response.json()
-          setCate(data)
+          const data = await response.json();
+          setCate(data);
         } else {
           // console.log("카테고리 못가져옴")
         }
@@ -47,19 +46,37 @@ function WritingBoard() {
         alert(error);
       }
     };
-    if(cate == null){
+    if (cate == null) {
       cateServer();
     }
-  },[])
+  }, []);
 
   useEffect(() => {
-    if(imgId != null && imgName != null){
-      setImageInformation(prevImageInformation => [
-        ...prevImageInformation,
-        { imgId: imgId, imgName: imgName }
-      ]);
-      setImgId(null)
-      setImgName(null)
+    const cateServer = async () => {
+      try {
+        const response = await fetch(`/proxy/board/cate`, {
+          method: "POST",
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setCate(data);
+        } else {
+          // console.log("카테고리 못가져옴")
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+    if (cate == null) {
+      cateServer();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (imgId != null && imgName != null) {
+      setImageInformation((prevImageInformation) => [...prevImageInformation, { imgId: imgId, imgName: imgName }]);
+      setImgId(null);
+      setImgName(null);
     }
   }, [imgId, imgName]);
 
@@ -69,7 +86,7 @@ function WritingBoard() {
   };
 
   const handleEditorChange2 = (e) => {
-    const data = e.target.value
+    const data = e.target.value;
     setTitle(data);
   };
 
@@ -110,76 +127,78 @@ function WritingBoard() {
     }
   };
 
-
   const customUploadAdapter = (loader) => {
-      return {
-              upload(){
-              return new Promise ((resolve, reject) => {
-                    const data = new FormData();
-                    loader.file.then( async (file) => {
-                        data.append("file", file);
-                        data.append("option", "upload")
-                        try {
-                              const response = await fetch('/proxy/board/image', {
-                              method: "POST",
-                              body: data,
-                              });
-                              if (response.ok) {
-                                  const data = await response.json();
-                                  setImgName(data.imgName)
-                                  } else {
-                                  alert("사진업로드 실패");
-                                  }
-                                  } catch (error) {
-                                  alert(error+"사진업로드");
-                                   }
-  })})}}}
+    return {
+      upload() {
+        return new Promise((resolve, reject) => {
+          const data = new FormData();
+          loader.file.then(async (file) => {
+            data.append("file", file);
+            data.append("option", "upload");
+            try {
+              const response = await fetch("/proxy/board/image", {
+                method: "POST",
+                body: data,
+              });
+              if (response.ok) {
+                const data = await response.json();
+                setImgName(data.imgName);
+              } else {
+                alert("사진업로드 실패");
+              }
+            } catch (error) {
+              alert(error + "사진업로드");
+            }
+          });
+        });
+      },
+    };
+  };
 
-  function uploadPlugin (editor){
-      editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-          return customUploadAdapter(loader);
-      }
+  function uploadPlugin(editor) {
+    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+      return customUploadAdapter(loader);
+    };
   }
 
-    useEffect(() => {
-      const del = async()=>{
-        try {
-          const targetObject = imageInformation.find(obj => obj.imgId == move);
-          const imgNameval = targetObject.imgName;
-          const data = new FormData();
-          data.append("imgName", imgNameval);
-          data.append("option", "upload");
+  useEffect(() => {
+    const del = async () => {
+      try {
+        const targetObject = imageInformation.find((obj) => obj.imgId == move);
+        const imgNameval = targetObject.imgName;
+        const data = new FormData();
+        data.append("imgName", imgNameval);
+        data.append("option", "upload");
         const response = await fetch(`/proxy/board/image`, {
-        method: "POST",
-        body : data
-      });
-      if (response.ok) {
-        
-      } else {
-        alert("사진 삭제요청 실패");
+          method: "POST",
+          body: data,
+        });
+        if (response.ok) {
+        } else {
+          alert("사진 삭제요청 실패");
+        }
+      } catch (error) {
+        alert(error);
       }
-    } catch (error) {
-      alert(error);
-    }
+    };
+
+    if (move != null) {
+      del();
+      setMove(null);
     }
 
-    if(move != null){
-        del()
-        setMove(null)
-    }
-    
-    const updatedInformation = imageInformation.filter(info => info.imgId !== move);
+    const updatedInformation = imageInformation.filter((info) => info.imgId !== move);
     setImageInformation(updatedInformation);
-    }, [move]);
+  }, [move]);
 
-    const deleteImgId= (value) =>{
-      setMove(value)
-    }
-  
-    const insertImgId= (value) =>{
-      setImgId(value)
-    }
-    
+  const deleteImgId = (value) => {
+    setMove(value);
+  };
+
+  const insertImgId = (value) => {
+    setImgId(value);
+  };
+
   return (
     <div className="WritingBoard">
       <div className="ckeditor">
@@ -222,7 +241,7 @@ function WritingBoard() {
           onChange={handleEditorChange}
           config={{
             toolbar: {
-              items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList","|", "uploadImage"],
+              items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "|", "uploadImage"],
               shouldNotGroupWhenFull: true,
             },extraPlugins: [uploadPlugin]
             }}
@@ -230,22 +249,22 @@ function WritingBoard() {
               editor.model.document.on('change:data', () => {
                 const changes = Array.from(editor.model.document.differ.getChanges());
 
-                changes.forEach((change) => {
-                if (change.type === 'remove' && change.name === "imageBlock") {
+              changes.forEach((change) => {
+                if (change.type === "remove" && change.name === "imageBlock") {
                   const attributesMap = change.attributes;
-                  const uploadId = attributesMap.get('uploadId');
-                  deleteImgId(uploadId)
-                  }
-                });
-                  changes.forEach((change) => {
-                  if (change.type === 'insert' && change.name === "imageBlock") {
-                    const attributesMap = change.attributes;
-                    const uploadId = attributesMap.get('uploadId');
-                    insertImgId(uploadId)
-                  }
-                });
+                  const uploadId = attributesMap.get("uploadId");
+                  deleteImgId(uploadId);
+                }
               });
-            }}
+              changes.forEach((change) => {
+                if (change.type === "insert" && change.name === "imageBlock") {
+                  const attributesMap = change.attributes;
+                  const uploadId = attributesMap.get("uploadId");
+                  insertImgId(uploadId);
+                }
+              });
+            });
+          }}
         />
       </div>
       
@@ -275,8 +294,8 @@ function WritingBoard() {
             {item.name} : {item.value}
           </div>
         ))} */}
-        {/* {cateselect} */}
-{/* -------------------------------------------- */}
+      {/* {cateselect} */}
+      {/* -------------------------------------------- */}
     </div>
   );
 }
