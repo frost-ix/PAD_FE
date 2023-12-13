@@ -37,6 +37,27 @@ function WritingBoard() {
   }, []);
 
   useEffect(() => {
+    const cateServer = async () => {
+      try {
+        const response = await fetch(`/proxy/board/cate`, {
+          method: "POST",
+        });
+        if (response.ok) {
+          const data = await response.json();
+          setCate(data);
+        } else {
+          // console.log("카테고리 못가져옴")
+        }
+      } catch (error) {
+        alert(error);
+      }
+    };
+    if (cate == null) {
+      cateServer();
+    }
+  }, []);
+
+  useEffect(() => {
     if (imgId != null && imgName != null) {
       setImageInformation((prevImageInformation) => [...prevImageInformation, { imgId: imgId, imgName: imgName }]);
       setImgId(null);
