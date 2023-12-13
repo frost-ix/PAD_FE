@@ -98,8 +98,8 @@ function WritingBoard() {
         const flatArray = imgNames.flat();
           const data = { 
             boardTitle : title,
-            contents : editorData,
-            imgName : flatArray,
+            boardContent : editorData,
+            imgNames : flatArray,
             cateName : cateselect
           }
   
