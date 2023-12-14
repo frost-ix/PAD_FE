@@ -50,7 +50,7 @@ function App() {
           console.log("세션없음");
         }
       } catch (error) {
-        alert(error);
+        // alert(error);
       }
     };
     if(Session.memID == null){
