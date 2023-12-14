@@ -68,9 +68,9 @@ function Mainmenu(){
             <p>오늘의 추천 게시물을 확인하세요</p>
             <div className="popular-img" >
                 <Slider {...settings}>
-                {mainNotice ? (
+                {latestBoard ? (
                     <>
-                    {mainNotice.map((item, index)=>
+                    {latestBoard.map((item, index)=>
                     <div className="img-value">
                         <img src={item.imgPath} onClick={()=>navigate('/')}></img>
                         <h2>{item.boardTitle}</h2>
