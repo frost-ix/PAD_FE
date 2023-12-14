@@ -8,4 +8,12 @@
 
 *{
   margin: 0;
+  font-family: 'GyeonggiTitleM', sans-serif;
+}
+
+@font-face {
+  font-family: 'GyeonggiTitleM';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/GyeonggiTitleM.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
