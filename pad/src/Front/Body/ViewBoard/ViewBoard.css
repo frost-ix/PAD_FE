@@ -151,3 +151,21 @@ hr{
     /* background-color: #A5D8FA;
     color: 	#4e4ed6; */
 }
+
+.MyBoard{
+    height: auto;
+    width: 80%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.MyboardTable{
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #E8F5FF;
+}
