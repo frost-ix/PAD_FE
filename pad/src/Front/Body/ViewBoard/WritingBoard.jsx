@@ -82,7 +82,7 @@ function WritingBoard() {
             boardTitle : title,
             boardContent : editorData,
             imageNames : flatArray,
-            cateName : cateselect
+            cateID : cateselect
           }
   
           const response = await fetch(`/proxy/board/Write`, {
