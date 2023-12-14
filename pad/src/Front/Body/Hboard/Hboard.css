@@ -5,13 +5,15 @@
   width: 70vw;
   max-height: 88vh;
   margin-top: 7.5svh;
+  height: 90vh;
   background-color: #E8F5FF;
+  border-right:1px solid rgb(0,0,0,0.1);
 }
 .HboardBar{
   height: auto;
   width: 20%;
-  border-left: 1px solid grey;
-  border-right: 1px solid rgb(128,128,128,0.1);
+  border-left: 1px solid rgb(0,0,0,0.1);
+  border-right: 1px solid rgb(0,0,0,0.1);
   background-color: #E8F5FF;
   padding: 20px;
 }
@@ -127,7 +129,7 @@ button{
 }
 
 .big-cate{
-  height: 6%;
+  height: auto;
   width: 68%;
   background-color:#A5D8FA;
   color: white;
@@ -160,9 +162,8 @@ button{
   width: 80%;
   display: none;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 5%;
   padding-top: 10px;
-  padding-bottom: 10px;
   background: rgba(0,0,0,0.1);
   margin-right: auto;
   margin-left: auto;
@@ -185,6 +186,7 @@ button{
   flex-direction: column;
   font-weight: bolder;
   font-size: 16px;
+  padding-bottom: 8px;
 
 }
 
