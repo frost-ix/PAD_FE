@@ -1,6 +1,6 @@
 import './Mainmenu.css'
 import { useNavigate } from 'react-router-dom';
-import open from './image/open.jpeg';
+import open from './image/수리중.jpg';
 import sang from './image/sang.jpg';
 import war from './image/war.jpg';
 import Slider from "react-slick";
@@ -68,10 +68,21 @@ function Mainmenu(){
             <p>오늘의 추천 게시물을 확인하세요</p>
             <div className="popular-img" >
                 <Slider {...settings}>
+                {mainNotice ? (
+                    <>
+                    {mainNotice.map((item, index)=>
+                    <div className="img-value">
+                        <img src={item.imgPath} onClick={()=>navigate('/')}></img>
+                        <h2>{item.boardTitle}</h2>
+                    </div>
+                    )}
+                    </>
+                ):(        
                     <div className="img-value">
                         <img src={open}></img>
-                        <h2>오펜하이머</h2>
-                    </div>
+                        <h2>점검중</h2>
+                    </div>             
+                )}
                     </Slider>
             </div>
 
@@ -103,42 +114,6 @@ function Mainmenu(){
                         <div className="n-date">ERROR</div>
                     </div>
                 )}
-{/* 
-                <div className="notice-body">
-                    <div className="n-num">1</div>
-                    <div className="n-title">공지사항 안내입니다.</div>
-                    <div className="n-date">2023-12-12</div>
-                </div>
-
-                <div className="notice-body-even">
-                    <div className="n-num">2</div>
-                    <div className="n-title">공지사항 안내입니다.</div>
-                    <div className="n-date">2023-12-12</div>
-
-                </div>
-
-                <div className="notice-body">
-                    <div className="n-num">3</div>
-                    <div className="n-title">공지사항 안내입니다.</div>
-                    <div className="n-date">2023-12-12</div>
-
-                </div>
-
-                <div className="notice-body-even">
-                    <div className="n-num">4</div>
-                    <div className="n-title">공지사항 안내입니다.</div>
-                    <div className="n-date">2023-12-12</div>
-
-                </div>
-
-                <div className="notice-body">
-                    <div className="n-num">5</div>
-                    <div className="n-title">공지사항 안내입니다.</div>
-                    <div className="n-date">2023-12-12</div>
-
-                </div> */}
-
-                
             </div>
             
             <div className="button-area">
