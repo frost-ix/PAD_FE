@@ -91,13 +91,13 @@ hr{
 }
 
 /* 카테고리 */
-.big-cate{
+/* .big-cate{
     height: 6%;
     background-color:#A5D8FA;
     color: white;
     padding: 35px;
     cursor: pointer;
-    /* border-radius: 15px; */
+    /* border-radius: 15px; 
   }
   #first-big-cate{
     border-radius: 5px 5px 0 0;
@@ -130,4 +130,65 @@ hr{
     padding:10% 15%;
     margin: 10% auto;
     border-radius: 15px;
+} */
+
+
+.ViewBoardBar{
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: 20%;
+    height: auto;
+    background-color: white;
+    border-right : none;
+    padding: 10px 14px;
+}
+
+
+
+.viewbutton{
+    width: 100%;
+    height: 15%;
+    border: none;
+    background-color: white;
+    border-radius: 5px;   
+}
+
+.viewbutton:hover{
+    cursor: pointer;
+    background: #dcdcdc;
+
+}
+
+
+.viewBoradBarSmall{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.viewBoradBarSmall button {
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(77, 77, 77);
+    border: 1px solid #A5D8FA;
+    margin: 10% auto;
+    padding: 5%;
+    box-shadow: 1px 1px 3px gray;
+    background-color: #A5D8FA;
+    color: 	#4e4ed6;
+}
+
+.viewBoradBarSmall button:hover{
+
+    border-radius: 5px;
+    background-color: white;
+    /* background-color: #A5D8FA;
+    color: 	#4e4ed6; */
 }
