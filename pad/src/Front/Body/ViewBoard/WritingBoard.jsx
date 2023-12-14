@@ -74,12 +74,9 @@ function WritingBoard() {
     const save = async () => {
       try {
         const imgNames = imageInformation.map((info) => info.imgName);
-        console.log(imgNames);
-        console.log("ddd")
-        const imgNames = imageInformation.map(info => info.imgName);
-        console.log(imgNames)
+        // console.log(imgNames);
         const flatArray = imgNames.flat();
-        console.log(flatArray)
+        // console.log(flatArray)
           const data = { 
             boardTitle : title,
             boardContent : editorData,
