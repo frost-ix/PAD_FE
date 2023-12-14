@@ -47,12 +47,12 @@ function Hboard() {
       if (response.ok) {
         const data = await response.json();
         setBoardData(data);
-        console.log(data);
+        // console.log(data);
       } else {
-        console.log("게시판불러오기 실패");
+        // console.log("게시판불러오기 실패");
       }
     } catch (error) {
-      console.error("게시판불러오기 실패", error);
+      // console.error("게시판불러오기 실패", error);
     }
   };
   //최대 페이지 구하는 방법
@@ -66,7 +66,7 @@ function Hboard() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data+"카운터")
+        // console.log(data+"카운터")
         var count = data / 9;
         count = Math.floor(count);
         if (data % 9 > 0) {
@@ -75,10 +75,10 @@ function Hboard() {
         //최대 페이지 개수
         setMaxPage(count);
       } else {
-        console.log("게시판카운트세기 실패");
+        // console.log("게시판카운트세기 실패");
       }
     } catch (error) {
-      console.error("게시판카운트세기 실패(에러요)", error);
+      // console.error("게시판카운트세기 실패(에러요)", error);
     }
   };
 

@@ -1,7 +1,6 @@
 import './ViewBoard.css'
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-import "./ViewBoard.css";
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux'
 
@@ -14,9 +13,12 @@ function ViewBoard(){
     const boardID = state ? state : 'default value';
      //BoardID 에 따라서 저장된 정보 불러오기
      const [boardIDinfo, setBoardIDinfo] = useState();
+     const [favValue, setFavValue]=useState();
      const [renderedHtml, setRenderdHtml] = useState();
-    let cnt = 0
-    
+     const [favButton, setFavButton] = useState("즐겨찾기");
+     let cnt = 0
+
+
     const ViewBoardinfo = async () => {
         try {
             const data = { boardID : boardID }
@@ -30,17 +32,20 @@ function ViewBoard(){
           if (response.ok) {
             const data = await response.json();
             setBoardIDinfo(data);
-            console.log(data,"??");
+            setFavValue(data.favv)
           } else {
             // console.log("ID정보 실패");
           }
         } catch (error) {
           console.error("ID정보불러오기 실패", error);
         }
+        
     }; 
     useEffect(()=>{
         ViewBoardinfo(boardID);
     },[]);
+
+
 
     const extractElements = (htmlString,imgPaths,imgIndex = 0) => { // 문자열에서 HTML 요소 추출 및 재귀적 처리
         const wrapper = document.createElement('div')
@@ -66,12 +71,8 @@ function ViewBoard(){
                     }, {});
                 }
                 if(tagName==='figure'){
-                    console.log(cnt)
-                    console.log(imgPaths[cnt])
                     tagName = 'img'
                     props.src = imgPaths[cnt++]
-                    console.log(typeof props.className)
-                    console.log(props.className)
                     props.className += ' test'
                 }
                
@@ -95,7 +96,7 @@ function ViewBoard(){
                 body: JSON.stringify(data),
             });
             console.log(data)
-            if (response.ok && data === 1) {
+            if (response.ok) {
                 // console.log(data);
                 alert("게시물 삭제 성공!");
                 navigate("/Hboard");
@@ -105,7 +106,7 @@ function ViewBoard(){
                 alert("게시물 삭제 실패!");
             }
         } catch (error) {
-            console.error("ID정보불러오기 실패시발", error);
+            console.error("ID정보불러오기 실패", error);
         }
         
 
@@ -119,10 +120,60 @@ function ViewBoard(){
         }
     }, [boardIDinfo]); // 의존성 배열에 boardIDinfo 추가
    
+
+    const fav = async() => {
+        try {
+        const data = { boardID : boardID }
+            const response = await fetch(`/proxy/member/fav`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+            if (response.ok) {
+                alert("즐겨찾기 게시물로 등록하였습니다.");
+                setFavValue(true)
+            } else {
+                // alert("즐겨찾기 게시물로 등록 실패!");
+            }
+        } catch (error) {
+            console.error("ID정보불러오기 실패", error);
+        }
+    }
+
+    const favCancle = async() => {
+        try {
+        const data = { boardID : boardID }
+            const response = await fetch(`/proxy/member/favCancle`, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            });
+            if (response.ok) {
+                alert("즐겨찾기 취소.");
+                setFavValue(false)
+            } else {
+                // alert("즐겨찾기 게시물로 등록 실패!");
+            }
+        } catch (error) {
+            console.error("ID정보불러오기 실패", error);
+        }
+    }
+
+    useEffect(() => {
+        if (favValue) {
+            setFavButton("즐겨찾기 취소")
+        }else{
+            setFavButton("즐겨찾기")
+        }
+
+    }, [favValue]);
     return(      
         <div className="ViewBoard">
             <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
-
             <div className="ViewBoardBar">
                 <div className='viewBoradBarSmall'>
                 {boardIDinfo ? (
@@ -132,19 +183,40 @@ function ViewBoard(){
                         <button className='viewbutton' onClick={() => {navigate(-1);}}>돌아가기</button>
                         <button className='viewbutton' onClick={() => {navigate("/WritingBoard");}}>생성</button>
                         <button className='viewbutton' onClick={() => {navigate("/");}}>수정</button>
+                        <button id="favButton"  onClick={() => {
+                            if(Session.memID==null){
+                                alert("로그인 후 이용해주세요!")
+                            }else{
+                                if(favValue){
+                                    favCancle()
+                                }else{
+                                    fav()
+                                }
+                            }
+                            }}>{favButton}</button>
                         <button className='viewbutton' onClick={viewBoardDelete}>삭제</button>
                     </>
                     ) : (//자기 게시물아닐때
                     <>
                         <button className='viewbutton' onClick={() => {navigate(-1);}}>돌아가기</button>
                         <button className='viewbutton' onClick={() => {navigate("/WritingBoard");}}>생성</button>
+                        <button className='viewbutton' onClick={() => {navigate("/");}}>수정</button>
+                        <button id="favButton" onClick={() => {
+                            if(Session.memID==null){
+                                alert("로그인 후 이용해주세요!")
+                            }else{
+                                if(favValue){
+                                    favCancle()
+                                }else{
+                                    fav()
+                                }
+                            }
+                            }}>{favButton}</button>
                     </>
                     )}
                     </>
                 ):(
                     <>
-                    <button className='viewbutton' onClick={() => {navigate(-1);}}>돌아가기</button>
-                    <button className='viewbutton' onClick={() => {navigate("/WritingBoard");}}>생성</button>
                     </>
                 )}    
             </div>               
@@ -181,6 +253,7 @@ function ViewBoard(){
                 </div>
             )}
          
+        
         </div>
     )
 }
