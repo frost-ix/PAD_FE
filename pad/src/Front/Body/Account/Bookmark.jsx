@@ -81,8 +81,10 @@ function Bookmark() {
 
     return(
         <div className="Bookmark">
-      <div className="BboardTable">
-        <table className="HboardInTable">
+      
+        {maxPage ? (
+          <div className="BboardTable">
+          <table className="HboardInTable">
           <tbody>
             {chunkedDataArray.map((rowItems) => (
               <tr>
@@ -123,7 +125,12 @@ function Bookmark() {
             다음
           </button>
         </div>
-      </div>
+        </div>
+        ):(
+          <div className='board-null'>
+            <div className='board-null-h2'>즐겨찾기를 지정한 게시물이 존재하지 않습니다.</div>
+          </div>
+        )} 
     </div>
     );
 }
