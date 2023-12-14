@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/proxy/:member*",
-      "destination": "https://1.209.148.143:4100/:member*"
+      "destination": "https://1.209.148.143:4100//proxy/:member*"
     },
     {
       "source": "/proxy/:board*",
-      "destination": "https://1.209.148.143:4100/:board*"
+      "destination": "https://1.209.148.143:4100/proxy/:board*"
     }
   ]
 }
