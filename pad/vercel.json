@@ -1,8 +1,5 @@
 {
   "proxy": {
-    "/proxy": {
-      "target": "http://1.209.148.143:4100",
-      "changeOrigin": true
-    }
+    "/proxy": "https://1.209.148.143:4100/proxy"
   }
 }
