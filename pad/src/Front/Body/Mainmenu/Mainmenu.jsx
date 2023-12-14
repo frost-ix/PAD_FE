@@ -46,14 +46,14 @@ function Mainmenu(){
     }
 
     const settings = {
-        arrows:false,
+        arrows:true,
         dots:false,
         infinite: true,
-        slidesToSHow: 3,
-        slidesToScroll: 1,
+        slidesToSHow: 8,
+        slidesToScroll: 3,
         variableWidth: true,
-        autoplay: true,
-        autoplaySpeed: 5000,
+        // autoplay: true,
+        // autoplaySpeed: 5000,
     };
     return(
         <div className="LoginAfter">
