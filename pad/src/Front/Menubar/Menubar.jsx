@@ -32,7 +32,7 @@ function Menubar() {
             memMail: null,
           })
         );
-        navigate("/");
+        // navigate("/");
       } else {
         alert("로그아웃 실패");
       }

@@ -27,7 +27,7 @@ function WritingBoard() {
   const [imgId, setImgId] = useState();
   const [imageInformation, setImageInformation] = useState([]);
   const [move, setMove] = useState();
-  const [cateselect, setCateselect] = useState();
+  const [cateselect, setCateselect] = useState("S-005");
   const navigate = useNavigate();
 
   useEffect(() => {

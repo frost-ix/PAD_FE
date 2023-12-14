@@ -71,7 +71,7 @@ function Mainmenu(){
                     <Slider {...settings}>
                     {latestBoard.map((item, index)=>
                     <div className="img-value">
-                        <img src={item.imgPath} onClick={()=>navigate('/')}></img>
+                        <img src={item.imgPath} onClick={()=>navigate('/ViewBoard', {state:item.boardID})}></img>
                         <h2>{item.boardTitle}</h2>
                     </div>
                     )}
