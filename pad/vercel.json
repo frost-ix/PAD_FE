@@ -1,5 +1,8 @@
 {
-  "proxy": {
-    "/proxy": "https://1.209.148.143:4100/proxy"
-  }
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    }
+  ]
 }
