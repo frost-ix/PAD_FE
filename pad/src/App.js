@@ -36,7 +36,7 @@ function App() {
   useEffect(()=>{
     const SessionServer = async () => {
       try {
-        const response = await fetch(`/proxy/session`, {
+        const response = await fetch(`/proxy/member/session`, {
           method: "POST",
         });
         if (response.ok) {
@@ -47,13 +47,13 @@ function App() {
             memTel:data.memTel,
             memMail:data.memMail}))
         } else {
-          // console.log("세션없음")
+          console.log("세션없음");
         }
       } catch (error) {
         alert(error);
       }
     };
-    if(Session.memNN == null){
+    if(Session.memID == null){
       SessionServer();
     }
   },[])
