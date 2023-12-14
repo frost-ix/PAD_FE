@@ -40,6 +40,7 @@ function WritingBoard() {
         if (response.ok) {
           const data = await response.json();
           setCate(data);
+          console.log(data)
         } else {
           console.log("카테고리 못가져옴")
         }
@@ -97,7 +98,7 @@ function WritingBoard() {
           alert("게시판 올리기 실패");
         }
       } catch (error) {
-        alert(error);
+        alert(error+"savadata");
       }
     };
 
@@ -162,7 +163,7 @@ function WritingBoard() {
           alert("사진 삭제요청 실패");
         }
       } catch (error) {
-        alert(error);
+        alert(error+"사진삭제");
       }
     };
 
@@ -258,7 +259,7 @@ function WritingBoard() {
       
       
 {/* -----------------------테스트--------------------- */}
-      {editorData}
+      {/* {editorData} */}
       {/* {imgId.map((item, index) => (
         <div key={index}>
           {index}번쨰 사진 아이디 : {item}
@@ -271,11 +272,11 @@ function WritingBoard() {
         </div>
       ))}  */}
 
-      {imageInformation.map((item, index) => (
+      {/* {imageInformation.map((item, index) => (
         <div key={index}>
           {index}번쨰 사진 이름 : {item.imgId}
         </div>
-      ))}
+      ))} */}
 
       {/* {cate.map((item, index) => (
           <div key={index}>

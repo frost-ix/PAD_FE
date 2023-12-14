@@ -90,9 +90,9 @@ function Mainmenu(){
                 <>
                     {mainNotice.map((item, index)=>
                     <div className="notice-body">
-                        <div className="n-num">{index + 1}</div>
-                        <div className="n-title">공지사항 안내입니다.</div>
-                        <div className="n-date">2023-12-12</div>
+                        <div className="n-num">{item.notiID}</div>
+                        <div className="n-title">{item.notiTitle}</div>
+                        <div className="n-date">{item.notiRegDate}</div>
                     </div>
                     )}
                     </>
