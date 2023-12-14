@@ -33,7 +33,8 @@ function MyBoard(){
     //데이터 베이스에서 한 페이지 당 9개 게심물 가져오기
     const BoardAll = async () => {
       const first = {
-        currentBoardID: (page - 1) * 9 + 1,
+        start : (page - 1) * 9 + 1,
+        end : page * 9
       };
       try {
         const response = await fetch(`/proxy/board/myBoard`, {
