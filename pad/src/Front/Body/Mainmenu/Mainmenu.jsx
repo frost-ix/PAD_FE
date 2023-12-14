@@ -13,7 +13,7 @@ function Mainmenu(){
     const Session = useSelector((state) => state.Session.value)
     const navigate = new useNavigate();
 
-    const [mainNotice, setMainNotice] = useState();
+    const [mainNotice, setMainNotice] = useState(false);
     const [latestBoard, setLatestBoard] = useState();
 
     useEffect(()=>{
@@ -24,9 +24,10 @@ function Mainmenu(){
             },
         })
         .then(res => res.json())
-        .then(json => {setMainNotice(json)
-            console.log(json)});
-    
+        .then(json => 
+            {setMainNotice(json)
+            console.log(json+"노티스")}
+            );
         const response2 = fetch('/proxy/board/latestBoard', {
             method: "POST",
             headers: {
@@ -58,7 +59,12 @@ function Mainmenu(){
         <div className="LoginAfter">
         <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
         <div className="popular">
-            <h1>{Session.memNN}님, <strong>PAD</strong>에 오신것을 환영합니다!</h1>
+            {Session.memNN ? (
+                <h1>{Session.memNN}님, <strong>PAD</strong>에 오신것을 환영합니다!</h1>
+            ):(
+                <h1><strong>PAD</strong>에 오신것을 환영합니다!</h1>
+            )}
+            
             <p>오늘의 추천 게시물을 확인하세요</p>
             <div className="popular-img" >
                 <Slider {...settings}>
@@ -80,7 +86,24 @@ function Mainmenu(){
                     <div className="n-title"><strong>제목</strong></div>
                     <div className="n-date"><strong>날짜</strong></div>
                 </div>
-
+                {mainNotice ? (
+                <>
+                    {mainNotice.map((item, index)=>
+                    <div className="notice-body">
+                        <div className="n-num">{index + 1}</div>
+                        <div className="n-title">공지사항 안내입니다.</div>
+                        <div className="n-date">2023-12-12</div>
+                    </div>
+                    )}
+                    </>
+                ):(           
+                    <div className="notice-body">
+                        <div className="n-num">1</div>
+                        <div className="n-title">공지사항 오류</div>
+                        <div className="n-date">ERROR</div>
+                    </div>
+                )}
+{/* 
                 <div className="notice-body">
                     <div className="n-num">1</div>
                     <div className="n-title">공지사항 안내입니다.</div>
@@ -113,7 +136,7 @@ function Mainmenu(){
                     <div className="n-title">공지사항 안내입니다.</div>
                     <div className="n-date">2023-12-12</div>
 
-                </div>
+                </div> */}
 
                 
             </div>

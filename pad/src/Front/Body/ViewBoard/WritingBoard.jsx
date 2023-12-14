@@ -36,35 +36,15 @@ function WritingBoard() {
         const response = await fetch(`/proxy/board/cate`, {
           method: "POST",
         });
+        // console.log(response)
         if (response.ok) {
           const data = await response.json();
           setCate(data);
         } else {
-          // console.log("카테고리 못가져옴")
+          console.log("카테고리 못가져옴")
         }
       } catch (error) {
-        alert(error);
-      }
-    };
-    if (cate == null) {
-      cateServer();
-    }
-  }, []);
-
-  useEffect(() => {
-    const cateServer = async () => {
-      try {
-        const response = await fetch(`/proxy/board/cate`, {
-          method: "POST",
-        });
-        if (response.ok) {
-          const data = await response.json();
-          setCate(data);
-        } else {
-          // console.log("카테고리 못가져옴")
-        }
-      } catch (error) {
-        alert(error);
+        alert(error+"카테");
       }
     };
     if (cate == null) {
@@ -93,13 +73,15 @@ function WritingBoard() {
   const saveData = () => {
     const save = async() => {
       try {
+        console.log("ddd")
         const imgNames = imageInformation.map(info => info.imgName);
         console.log(imgNames)
         const flatArray = imgNames.flat();
+        console.log(flatArray)
           const data = { 
             boardTitle : title,
             boardContent : editorData,
-            imgNames : flatArray,
+            imageNames : flatArray,
             cateName : cateselect
           }
   
@@ -144,7 +126,8 @@ function WritingBoard() {
               });
               if (response.ok) {
                 const data = await response.json();
-                setImgName(data.imgName);
+                setImgName(data);
+                console.log(data)
               } else {
                 alert("사진업로드 실패");
               }
@@ -227,7 +210,7 @@ function WritingBoard() {
         {cate ? (
           <>
             {cate.map((item, index) => (
-              <option key={index} value={item.value}>{item.name}</option>
+              <option key={index} value={item.cateID}>{item.cateName}</option>
             ))}
           </>
         ) : (
@@ -272,7 +255,7 @@ function WritingBoard() {
       
       
 {/* -----------------------테스트--------------------- */}
-      {/* {editorData} */}
+      {editorData}
       {/* {imgId.map((item, index) => (
         <div key={index}>
           {index}번쨰 사진 아이디 : {item}
