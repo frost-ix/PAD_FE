@@ -28,7 +28,7 @@ function Mainmenu() {
         setMainNotice(json);
         console.log(json + "노티스");
       });
-    const response2 = fetch("/proxy/board/latestBoard", {
+    const response2 = fetch("http://1.209.148.143:4100/proxy/board/latestBoard", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -7,6 +7,10 @@
     {
       "source": "/proxy/:board*",
       "destination": "https://1.209.148.143:4100/proxy/:board*"
+    },
+    {
+      "source": "/proxy/:noti*",
+      "destination": "https://1.209.148.143:4100/proxy/:noti*"
     }
   ]
 }
