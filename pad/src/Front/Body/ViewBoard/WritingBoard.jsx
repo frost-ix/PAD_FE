@@ -6,7 +6,7 @@ import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 function WritingBoard() {
   const [editorData, setEditorData] = useState(
-      `<p>안녕하세요!</p>
+    `<p>안녕하세요!</p>
       <p>&nbsp;</p>
       <p>홍보 게시판을 이용해 주셔서 감사합니다. 이 공간은 회원 여러분이 자신의</p> 
       <p>이벤트, 프로모션, 또는 다양한 홍보 활동을 공유하고 소개할 수 있는 곳입니다.</p>
@@ -20,7 +20,7 @@ function WritingBoard() {
       <p>즐거운 홍보 활동 되시길 바랍니다!</p>
       <p>&nbsp;</p>
       <p>감사합니다.</p>`
-    );
+  );
   const [title, setTitle] = useState("");
   const [cate, setCate] = useState();
   const [imgName, setImgName] = useState();
@@ -71,8 +71,10 @@ function WritingBoard() {
   };
 
   const saveData = () => {
-    const save = async() => {
+    const save = async () => {
       try {
+        const imgNames = imageInformation.map((info) => info.imgName);
+        console.log(imgNames);
         console.log("ddd")
         const imgNames = imageInformation.map(info => info.imgName);
         console.log(imgNames)
@@ -88,9 +90,9 @@ function WritingBoard() {
           const response = await fetch(`/proxy/board/Write`, {
           method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          body : JSON.stringify(data)
+          body: JSON.stringify(data),
         });
         if (response.ok) {
           navigate(-1);
@@ -100,14 +102,14 @@ function WritingBoard() {
       } catch (error) {
         alert(error);
       }
-    }
+    };
 
-    if(title == null | title == ""){
-      alert("제목을 입력해주세요")
-    }else if(editorData == null | editorData == ""){
-      alert("내용을 입력해주세요")
-    }else{
-      save()
+    if ((title == null) | (title == "")) {
+      alert("제목을 입력해주세요");
+    } else if ((editorData == null) | (editorData == "")) {
+      alert("내용을 입력해주세요");
+    } else {
+      save();
     }
   };
 
@@ -187,12 +189,15 @@ function WritingBoard() {
   return (
     <div className="WritingBoard">
       <div className="ckeditor">
-      <div className="WritingH2-div">
-        <h2 className="WritingH2">홍보 글쓰기</h2>
-        <button onClick={saveData} className="saveButton">등록</button></div>
-      <div className="cate-div">
-        {/* ------------------------------------자동완성기능 보류 */}
-        {/* <input type="text" className="cate-input" list="categories" placeholder="카테고리 선택" onChange={(e)=> {setCateselect(e.target.value)}}/>
+        <div className="WritingH2-div">
+          <h2 className="WritingH2">홍보 글쓰기</h2>
+          <button onClick={saveData} className="saveButton">
+            등록
+          </button>
+        </div>
+        <div className="cate-div">
+          {/* ------------------------------------자동완성기능 보류 */}
+          {/* <input type="text" className="cate-input" list="categories" placeholder="카테고리 선택" onChange={(e)=> {setCateselect(e.target.value)}}/>
         <datalist id="categories" className="cate-list" >
         {cate ? (
           <>
@@ -219,7 +224,7 @@ function WritingBoard() {
       </select>
       </div>
 
-      <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요" required/>  
+        <input type="text" className="WritingTitle" data={title} id="title" onChange={handleEditorChange2} placeholder="제목을 입력하세요" required />
         <CKEditor
           editor={ClassicEditor}
           data={editorData}
@@ -228,11 +233,12 @@ function WritingBoard() {
             toolbar: {
               items: ["undo", "redo", "|", "heading", "|", "bold", "italic", "link", "bulletedList", "numberedList", "|", "uploadImage"],
               shouldNotGroupWhenFull: true,
-            },extraPlugins: [uploadPlugin]
-            }}
-            onReady={(editor) => {
-              editor.model.document.on('change:data', () => {
-                const changes = Array.from(editor.model.document.differ.getChanges());
+            },
+            extraPlugins: [uploadPlugin],
+          }}
+          onReady={(editor) => {
+            editor.model.document.on("change:data", () => {
+              const changes = Array.from(editor.model.document.differ.getChanges());
 
               changes.forEach((change) => {
                 if (change.type === "remove" && change.name === "imageBlock") {
@@ -267,7 +273,7 @@ function WritingBoard() {
           {index}번쨰 사진 이름 : {item}
         </div>
       ))}  */}
-      
+
       {imageInformation.map((item, index) => (
         <div key={index}>
           {index}번쨰 사진 이름 : {item.imgId}

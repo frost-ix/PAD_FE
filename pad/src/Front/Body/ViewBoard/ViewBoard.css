@@ -1,39 +1,194 @@
-.ViewBoard{
-    height: auto;
-    width: 70vw;
+.ViewBoard {
     display: flex;
     justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    width: 60%;
+    margin-top: 7.5svh;
+    box-shadow: 1px 0 3px gray,-1px 0 3px gray;
+}
+.ViewBoardBar{
+    height: 100%;
+    width: 20%;
+    padding: 0.5%;
+}
+.ViewBoardTable{
+    height: auto;
+    width: 80%;
     flex-direction: column;
+    box-shadow: -3.5px 0px 3px -3px gray;
+}
+.viewOneTitle{
+    box-shadow: 0px 2.8px 3px -2px rgb(104, 104, 104);
+    color: transparent;
+    text-shadow: rgba(255, 255, 255, 0.5) 0px 8px 8px;
+    color: black; 
+    text-shadow: 2px 2px 2px rgb(55, 53, 53); 
+    z-index: 1;
+    font-size: 50px;
+    padding: 3% 0;
+    font-weight: 900;
+    background-color:#A5D8FA;
 
 
-    margin-top: 7.5vh;
+}
+/*사진 위치에 관한 설정*/
+.test{
+    margin: auto;
+    width: auto;
+    max-width: 100% ;
+    min-width: 10px;
+    max-height: 900px;
+    display: grid;
+    place-items: center;
 
+  
+}
+
+.viewOneTitle .viewTitleSmallData{
     /* border: 1px solid black; */
+    color: black;
+    font-size: 15px;
+    /* font-weight: 800; */
+    opacity: 0.5;
+    width: auto;
+    text-shadow: none;
 }
 
-.View-Table{
-    /* height: 100%; */
-    height: auto;
-    width: 1000px;
+.viewContentAll{
+    width: 70%;
+    /* margin: auto; */
+    text-align: left;
+    padding: 10%;
+    margin: auto;
+    padding-top: 10%; 
+    /* background-color:white ; */
+}
+hr{
+    box-shadow: 0px 20px 5px -2px gray;
+}
+
+/* data가 넘어오지 않았을 경우의 css */
+
+.WrongViewBoard{
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    width: 70vw;
+    margin-top: 7.5svh;
+    background-color: #E8F5FF;
+}
+.WrongViewBoardBar{
+    height: 100%;
+    width: 20%;
+    background-color:   #DCEBFF;
+  }
+.WrongViewBoardTable{
+    height: auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: #E8F5FF;
+}
+
+/* 카테고리 */
+/* .big-cate{
+    height: 6%;
+    background-color:#A5D8FA;
+    color: white;
+    padding: 35px;
+    cursor: pointer;
+    /* border-radius: 15px; 
+  }
+  #first-big-cate{
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .big-cate i{
+  
+    margin-right: 10%;
+    font-size: 30px;
+  
+  }
+  .big-cate span{
+    font-size: 20px;
+    font-weight: bolder;
+  }
+
+.viewRealContnent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.viewbutton{
+    display: block;
+    background-color:#A5D8FA;
+    border-color: #A5D8FA;
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 1px 1px 3px gray;
+    padding:10% 15%;
+    margin: 10% auto;
+    border-radius: 15px;
+} */
+
+
+.ViewBoardBar{
+    display: flex;
+    justify-content:flex-start;
     align-items: center;
     flex-direction: column;
-    border-left: 1px solid rgb(0,0,0,0.1);
-    border-right: 1px solid rgb(0,0,0,0.1);
-    margin-top:5px;
-}
-
-.View-Board-Img{
-    /* max-height: 1000px;
-    max-width: 700px; */
-    height: 1000px;
-    width: 900px;
-}
-
-.View-Table-Writing{
+    width: 20%;
     height: auto;
-    width: 900px;
-    text-align: left;
+    background-color: white;
+    border-right : none;
+    padding: 10px 14px;
+}
+
+
+
+.viewbutton{
+    width: 100%;
+    height: 15%;
+    border: none;
+    background-color: white;
+    border-radius: 5px;   
+}
+
+.viewbutton:hover{
+    cursor: pointer;
+    background: #dcdcdc;
+
+}
+
+
+.viewBoradBarSmall{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.viewBoradBarSmall button {
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(77, 77, 77);
+    border: 1px solid #A5D8FA;
+    margin: 10% auto;
+    padding: 5%;
+    box-shadow: 1px 1px 3px gray;
+    background-color: #A5D8FA;
+    color: 	#4e4ed6;
+}
+
+.viewBoradBarSmall button:hover{
+
+    border-radius: 5px;
+    background-color: white;
+    /* background-color: #A5D8FA;
+    color: 	#4e4ed6; */
 }
