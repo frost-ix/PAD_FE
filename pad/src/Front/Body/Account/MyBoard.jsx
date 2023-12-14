@@ -82,49 +82,55 @@ function MyBoard(){
 
     return(
         <div className="MyBoard">
-            <div className="MyboardTable">
-        <table className="HboardInTable">
-          <tbody>
-            {chunkedDataArray.map((rowItems) => (
-              <tr>
-                {rowItems.map((item) => (
-                  <td
-                    className="oneBoard"
-                    onClick={() => {
-                      navigate("/ViewBoard",{ state : item.boardID });
-                    }}>
-              <div className="dataTitles"><span>{item.boardTitle}</span></div>
-
-              <img src={img}  className="posterimg" />
-                 
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="buttondiv">
-          {/* 최대로 나올 수 있는 페이지보다 작을 경우까지, 현재 페이지에 페이지 +1 추가 */}
-          <button
-            className="prev"
-            onClick={() => {
-              if (page > 1) setPage(page - 1);
-            }}
-          >
-            이전
-          </button>
-          <p className="pagep">{page}</p>
-          {/* 최대로 나올 수 있는 페이지보다 작을 경우까지, 현재 페이지에 페이지 +1 추가 */}
-          <button
-            className="next"
-            onClick={() => {
-              if (maxPage > page) setPage(page + 1);
-            }}
-          >
-            다음
-          </button>
-        </div>
-      </div>
+      {maxPage ? (
+               <div className="MyboardTable">
+               <table className="HboardInTable">
+                 <tbody>
+                   {chunkedDataArray.map((rowItems) => (
+                     <tr>
+                       {rowItems.map((item) => (
+                         <td
+                           className="oneBoard"
+                           onClick={() => {
+                             navigate("/ViewBoard",{ state : item.boardID });
+                           }}>
+                     <div className="dataTitles"><span>{item.boardTitle}</span></div>
+       
+                     <img src={img}  className="posterimg" />
+                        
+                         </td>
+                       ))}
+                     </tr>
+                   ))}
+                 </tbody>
+               </table>
+               <div className="buttondiv">
+                 {/* 최대로 나올 수 있는 페이지보다 작을 경우까지, 현재 페이지에 페이지 +1 추가 */}
+                 <button
+                   className="prev"
+                   onClick={() => {
+                     if (page > 1) setPage(page - 1);
+                   }}
+                 >
+                   이전
+                 </button>
+                 <p className="pagep">{page}</p>
+                 {/* 최대로 나올 수 있는 페이지보다 작을 경우까지, 현재 페이지에 페이지 +1 추가 */}
+                 <button
+                   className="next"
+                   onClick={() => {
+                     if (maxPage > page) setPage(page + 1);
+                   }}
+                 >
+                   다음
+                 </button>
+               </div>
+             </div>
+        ):(
+          <div className='board-null'>
+            <div className='board-null-h2'>작성하신 게시물이 존재하지 않습니다.</div>
+          </div>
+        )} 
         </div>
     )
 }

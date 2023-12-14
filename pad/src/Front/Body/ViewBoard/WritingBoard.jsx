@@ -106,7 +106,9 @@ function WritingBoard() {
       alert("제목을 입력해주세요");
     } else if ((editorData == null) | (editorData == "")) {
       alert("내용을 입력해주세요");
-    } else {
+    } else if(cateselect==null){
+      alert("카테고리를 선택해주세요")
+    }else{
       save();
     }
   };

@@ -96,7 +96,7 @@ function Hboard() {
                     <a href="#">골프</a>     
                 </div>    
             </div>
-            <div className="big-cate" id="first-big-cate" >
+            <div className="big-cate">
                 <i class='bx bx-music' ></i>
                 <span>음악/미술</span>
                 <div className="small-cate">
@@ -106,7 +106,7 @@ function Hboard() {
                     <a href="#">댄스</a>  
                 </div>    
             </div>
-            <div className="big-cate" id="first-big-cate" >
+            <div className="big-cate">
                 <i class='bx bx-trip' ></i>
                 <span>여행</span>
                 <div className="small-cate">
@@ -114,7 +114,7 @@ function Hboard() {
                     <a href="#">해외</a> 
                 </div>    
             </div>
-            <div className="big-cate" id="first-big-cate" >
+            <div className="big-cate">
                 <i className='bx bxl-tiktok'></i>
                 <span>문화</span>
                 <div className="small-cate">
@@ -124,7 +124,7 @@ function Hboard() {
                     <a href="#">전시회</a>   
                 </div>    
             </div>
-            <div className="big-cate" id="first-big-cate" >
+            <div className="big-cate">
                 <i class='bx bx-book-open' ></i>
                 <span>스터디</span>
                 <div className="small-cate">
@@ -133,7 +133,7 @@ function Hboard() {
                     <a href="#">미술</a>    
                 </div>    
             </div>
-            <div className="big-cate" id="first-big-cate" >
+            <div className="big-cate" id="last-big-cate" >
                 <i class='bx bx-menu' ></i>
                 <span>기타</span> 
             </div>

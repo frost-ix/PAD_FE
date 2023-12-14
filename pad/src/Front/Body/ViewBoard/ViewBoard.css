@@ -20,13 +20,11 @@
 .viewOneTitle{
     box-shadow: 0px 2.8px 3px -2px rgb(104, 104, 104);
     color: transparent;
-    text-shadow: rgba(255, 255, 255, 0.5) 0px 8px 8px;
     color: black; 
-    text-shadow: 2px 2px 2px rgb(55, 53, 53); 
     z-index: 1;
     font-size: 50px;
     padding: 3% 0;
-    font-weight: 900;
+    font-weight: lighter;
     background-color:#A5D8FA;
 
 
@@ -49,6 +47,7 @@
     color: black;
     font-size: 15px;
     /* font-weight: 800; */
+    margin-top: 8px;
     opacity: 0.5;
     width: auto;
     text-shadow: none;
@@ -90,47 +89,7 @@ hr{
     background-color: #E8F5FF;
 }
 
-/* 카테고리 */
-/* .big-cate{
-    height: 6%;
-    background-color:#A5D8FA;
-    color: white;
-    padding: 35px;
-    cursor: pointer;
-    /* border-radius: 15px; 
-  }
-  #first-big-cate{
-    border-radius: 5px 5px 0 0;
-  }
-  
-  .big-cate i{
-  
-    margin-right: 10%;
-    font-size: 30px;
-  
-  }
-  .big-cate span{
-    font-size: 20px;
-    font-weight: bolder;
-  }
 
-.viewRealContnent{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-.viewbutton{
-    display: block;
-    background-color:#A5D8FA;
-    border-color: #A5D8FA;
-    font-size: 20px;
-    font-weight: bolder;
-    text-shadow: 1px 1px 3px gray;
-    padding:10% 15%;
-    margin: 10% auto;
-    border-radius: 15px;
-} */
 
 
 .ViewBoardBar{
@@ -149,7 +108,7 @@ hr{
 
 .viewbutton{
     width: 100%;
-    height: 15%;
+    height: 3%;
     border: none;
     background-color: white;
     border-radius: 5px;   
@@ -191,4 +150,22 @@ hr{
     background-color: white;
     /* background-color: #A5D8FA;
     color: 	#4e4ed6; */
+}
+
+.MyBoard{
+    height: auto;
+    width: 80%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.MyboardTable{
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #E8F5FF;
 }
