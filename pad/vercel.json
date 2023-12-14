@@ -1,16 +1,16 @@
 {
   "rewrites": [
     {
-      "source": "/proxy/:member*",
-      "destination": "https://1.209.148.143:4100//proxy/:member*"
+      "source": "/proxy/:path*",
+      "destination": "https://1.209.148.143:4100//proxy/:path*"
     },
     {
-      "source": "/proxy/:board*",
-      "destination": "https://1.209.148.143:4100/proxy/:board*"
+      "source": "/proxy/:path*/",
+      "destination": "https://1.209.148.143:4100//proxy/:path*/"
     },
     {
-      "source": "/proxy/:noti*",
-      "destination": "https://1.209.148.143:4100/proxy/:noti*"
+      "source": "/(.*)",
+      "destination": "/"
     }
   ]
 }
