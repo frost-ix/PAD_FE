@@ -131,6 +131,7 @@ function ViewBoard(){
             });
             if (response.ok) {
                 alert("즐겨찾기 게시물로 등록하였습니다!.");
+                
             } else {
                 // alert("즐겨찾기 게시물로 등록 실패!");
             }
