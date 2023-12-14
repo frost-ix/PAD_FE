@@ -1,8 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/index.html"
+      "source": "/proxy/:member*",
+      "destination": "https://1.209.148.143:4100/:member*"
+    },
+    {
+      "source": "/proxy/:board*",
+      "destination": "https://1.209.148.143:4100/:board*"
     }
   ]
 }
