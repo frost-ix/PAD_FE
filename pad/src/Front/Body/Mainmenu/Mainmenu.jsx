@@ -53,7 +53,7 @@ function Mainmenu(){
         slidesToScroll: 1,
         variableWidth: true,
         autoplay: true,
-        autoplaySpeed: 5000
+        autoplaySpeed: 5000,
     };
     return(
         <div className="LoginAfter">
@@ -67,23 +67,31 @@ function Mainmenu(){
             
             <p>오늘의 추천 게시물을 확인하세요</p>
             <div className="popular-img" >
-                <Slider {...settings}>
                 {latestBoard ? (
-                    <>
+                    <Slider {...settings}>
                     {latestBoard.map((item, index)=>
                     <div className="img-value">
                         <img src={item.imgPath} onClick={()=>navigate('/')}></img>
                         <h2>{item.boardTitle}</h2>
                     </div>
                     )}
-                    </>
+                    </Slider>
                 ):(        
+                    <Slider {...settings}>
                     <div className="img-value">
                         <img src={open}></img>
                         <h2>점검중</h2>
-                    </div>             
-                )}
-                    </Slider>
+                    </div>
+                    <div className="img-value">
+                        <img src={open}></img>
+                        <h2>점검중</h2>
+                    </div>
+                    <div className="img-value">
+                        <img src={open}></img>
+                        <h2>점검중</h2>
+                    </div>
+                    </Slider>             
+                )} 
             </div>
 
         </div>
