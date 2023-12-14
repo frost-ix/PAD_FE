@@ -1,18 +1,18 @@
-const { createProxyMiddleware } = require('http-proxy-middleware');
+const { createProxyMiddleware } = require("http-proxy-middleware");
 
-module.exports = function(app) {
+module.exports = function (app) {
   app.use(
-    '/proxy',
+    "/proxy",
     createProxyMiddleware({
-      // target: 'http://1.209.148.143:8800',
-      target: 'http://jungsonghun.iptime.org:7223',
+      target: "http://1.209.148.143:8800",
+      // target: 'http://jungsonghun.iptime.org:7223',
       changeOrigin: true,
       onError: (err, req, res) => {
-        console.error('Proxy Error:', err);
+        console.error("Proxy Error:", err);
         res.writeHead(500, {
-          'Content-Type': 'text/plain',
+          "Content-Type": "text/plain",
         });
-        res.end('문제가 발생했습니다. 자세한 내용은 로그를 확인하세요.');
+        res.end("문제가 발생했습니다. 자세한 내용은 로그를 확인하세요.");
       },
     })
   );
