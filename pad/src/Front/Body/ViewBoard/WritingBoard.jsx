@@ -122,7 +122,8 @@ function WritingBoard() {
             data.append("file", file);
             data.append("option", "upload");
             try {
-              const response = await fetch("/proxy/board/image", {
+              // const response = await fetch("/proxy/board/image", {
+                const response = await fetch("/node/board/image", {
                 method: "POST",
                 body: data,
               });
@@ -170,7 +171,7 @@ function WritingBoard() {
     };
 
     if (move != null) {
-      del();
+      // del();
       setMove(null);
     }
 

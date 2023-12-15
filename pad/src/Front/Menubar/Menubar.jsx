@@ -37,7 +37,7 @@ function Menubar() {
         alert("로그아웃 실패");
       }
     } catch (error) {
-      alert(error);
+      // alert(error);
     }
   };
   return (

@@ -11,35 +11,74 @@ import { useEffect, useState } from "react";
 
 function Mainmenu() {
   const Session = useSelector((state) => state.Session.value);
-  const navigate = new useNavigate();
+  const navigate = useNavigate();
 
   const [mainNotice, setMainNotice] = useState(false);
   const [latestBoard, setLatestBoard] = useState();
 
-  useEffect(() => {
-    const response = fetch("/proxy/notice/mainNotice", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        setMainNotice(json);
-        console.log(json + "노티스");
-      });
-    const response2 = fetch("/proxy/board/latestBoard", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        setLatestBoard(json);
-        console.log(json);
-      });
-  }, []);
+  // useEffect(async() => {
+  //   const response = await fetch("/proxy/notice/mainNotice", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       setMainNotice(json);
+  //       console.log(json + "노티스");
+  //     });
+
+  //   const response2 = await fetch("/proxy/board/latestBoard", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       setLatestBoard(json);
+  //       console.log(json);
+  //     });
+  // }, []);
+
+  // useEffect( async() => {
+  //   try{
+  //   const response = await fetch("/proxy/notice/mainNotice", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       setMainNotice(json);
+  //       // console.log(json + "노티스");
+  //     });
+  //   }catch{
+  //     console.log("?")
+  //   }
+
+
+  // }, []);
+
+  // useEffect( async() => {
+  //   try{
+  //   const response2 = await fetch("/proxy/board/latestBoard", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => res.json())
+  //     .then((json) => {
+  //       setLatestBoard(json);
+  //       // console.log(json);
+  //     });
+  //   }catch{
+  //     console.log("?")
+  //   }
+  // }, []);
 
   const calling = () => {
     alert("' 02-123-4567 '로 문의해주세요");
@@ -52,9 +91,8 @@ function Mainmenu() {
     slidesToSHow: 8,
     slidesToScroll: 3,
     variableWidth: true,
-    // autoplay: true,
-    // autoplaySpeed: 5000,
   };
+
   return (
     <div className="LoginAfter">
       <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></link>
