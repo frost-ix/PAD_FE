@@ -47,7 +47,7 @@ function Hboard() {
       if (response.ok) {
         const data = await response.json();
         setBoardData(data);
-        // console.log(data);
+        console.log(data);
       } else {
         // console.log("게시판불러오기 실패");
       }

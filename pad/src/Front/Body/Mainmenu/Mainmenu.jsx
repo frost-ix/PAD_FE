@@ -16,69 +16,31 @@ function Mainmenu() {
   const [mainNotice, setMainNotice] = useState(false);
   const [latestBoard, setLatestBoard] = useState();
 
-  // useEffect(async() => {
-  //   const response = await fetch("/proxy/notice/mainNotice", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setMainNotice(json);
-  //       console.log(json + "노티스");
-  //     });
+  useEffect(() => {
+    const response = fetch("/proxy/notice/mainNotice", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setMainNotice(json);
+        console.log(json + "노티스");
+      });
 
-  //   const response2 = await fetch("/proxy/board/latestBoard", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setLatestBoard(json);
-  //       console.log(json);
-  //     });
-  // }, []);
-
-  // useEffect( async() => {
-  //   try{
-  //   const response = await fetch("/proxy/notice/mainNotice", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setMainNotice(json);
-  //       // console.log(json + "노티스");
-  //     });
-  //   }catch{
-  //     console.log("?")
-  //   }
-
-
-  // }, []);
-
-  // useEffect( async() => {
-  //   try{
-  //   const response2 = await fetch("/proxy/board/latestBoard", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((json) => {
-  //       setLatestBoard(json);
-  //       // console.log(json);
-  //     });
-  //   }catch{
-  //     console.log("?")
-  //   }
-  // }, []);
+    const response2 = fetch("/proxy/board/latestBoard", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        setLatestBoard(json);
+        console.log(json);
+      });
+  }, []);
 
   const calling = () => {
     alert("' 02-123-4567 '로 문의해주세요");
