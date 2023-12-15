@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/proxy/:path*",
+      "destination": "https://1.209.148.143:4100//proxy/:path*"
+    },
+    {
+      "source": "/proxy/:path*/",
+      "destination": "https://1.209.148.143:4100//proxy/:path*/"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}

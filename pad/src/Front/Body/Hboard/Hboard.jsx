@@ -35,8 +35,8 @@ function Hboard() {
   //데이터 베이스에서 한 페이지 당 9개 게심물 가져오기
   const BoardAll = async () => {
     const first = {
-      start : (page - 1) * 9 + 1,
-      end : page * 9
+      start: (page - 1) * 9 + 1,
+      end: page * 9,
     };
     try {
       const response = await fetch(`/proxy/board`, {
@@ -179,12 +179,14 @@ function Hboard() {
                   <td
                     className="oneBoard"
                     onClick={() => {
-                      navigate("/ViewBoard",{ state : item.boardID });
-                    }}>
-              <div className="dataTitles"><span>{item.boardTitle}</span></div>
+                      navigate("/ViewBoard", { state: item.boardID });
+                    }}
+                  >
+                    <div className="dataTitles">
+                      <span>{item.boardTitle}</span>
+                    </div>
 
-              <img src={img}  className="posterimg" />
-                 
+                    <img src={img} className="posterimg" />
                   </td>
                 ))}
               </tr>
