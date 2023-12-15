@@ -183,7 +183,7 @@ function ViewBoard(){
                     {boardIDinfo.memID == Session.memID ? (//자기 게시물일떄
                     <>
                         <button className='viewbutton' onClick={() => {navigate(-1);}}>돌아가기</button>
-                        <button className='viewbutton' onClick={() => {navigate("/WritingBoard");}}>생성</button>
+                        <button className='viewbutton' onClick={() => {navigate("/WritingBoard");}}>글쓰기</button>
                         <button className='viewbutton' onClick={() => {navigate("/");}}>수정</button>
                         <button id="favButton"  onClick={() => {
                             if(Session.memID==null){
@@ -201,7 +201,7 @@ function ViewBoard(){
                     ) : (//자기 게시물아닐때
                     <>
                         <button className='viewbutton' onClick={() => {navigate(-1);}}>돌아가기</button>
-                        <button className='viewbutton' onClick={() => {navigate("/WritingBoard");}}>생성</button>
+                        <button className='viewbutton' onClick={() => {navigate("/WritingBoard");}}>글쓰기</button>
                         <button className='viewbutton' onClick={() => {navigate("/");}}>수정</button>
                         <button id="favButton" onClick={() => {
                             if(Session.memID==null){

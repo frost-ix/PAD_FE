@@ -94,7 +94,7 @@ function Mainmenu() {
   };
 
   return (
-    <div className="LoginAfter">
+    <div className="Mainmenu">
       <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet"></link>
       <div className="popular">
         {Session.memNN ? (
