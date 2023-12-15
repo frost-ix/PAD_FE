@@ -10,15 +10,19 @@ function Bookmark() {
     const [page, setPage] = useState(1);
     //가장 최대 페이지 변수, 함수
     const [maxPage, setMaxPage] = useState();
+    const [chunkedDataArray, setChunkedDataArray] = useState([]);
 
     const chunkArray = (arr, chunkSize) => {
         const result = [];
         for (let i = 0; i < arr.length; i += chunkSize) {
             result.push(arr.slice(i, i + chunkSize));
         }
+        console.log('result')
+        console.log(result)
+        setChunkedDataArray(result)
         return result;
     };
-    const chunkedDataArray = chunkArray(boardData, 3);
+    // const chunkedDataArray = chunkArray(boardData, 3);
 
     //page 변수 부분이 달라 질 떄 마다 BoardAll부분이 실행
     useEffect(() => {
@@ -46,6 +50,7 @@ function Bookmark() {
         if (response.ok) {
             const data = await response.json();
             setBoardData(data);
+            chunkArray(data, 3)
             console.log(data);
         } else {
             console.log("게시판불러오기 실패");
@@ -65,13 +70,14 @@ function Bookmark() {
         });
         if (response.ok) {
             const data = await response.json();
-            var count = data.total_rows / 9;
+            var count = data / 9;
             count = Math.floor(count);
-            if (data.total_rows % 9 > 0) {
+            if (data % 9 > 0) {
             count += 1;
             }
             //최대 페이지 개수
-            setMaxPage(count);
+            // setMaxPage(count);
+            setMaxPage(count)
         } else {
             console.log("게시판카운트세기 실패");
         }
@@ -79,6 +85,7 @@ function Bookmark() {
         console.error("게시판카운트세기 실패(에러요)", error);
         }
     };
+
 
     return(
         <div className="Bookmark">

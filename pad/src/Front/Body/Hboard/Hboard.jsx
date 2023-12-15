@@ -11,15 +11,17 @@ function Hboard() {
   const [page, setPage] = useState(1);
   //가장 최대 페이지 변수, 함수
   const [maxPage, setMaxPage] = useState();  
+  const [chunkedDataArray, setChunkedDataArray] = useState([])
 
   const chunkArray = (arr, chunkSize) => {
     const result = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
       result.push(arr.slice(i, i + chunkSize));
     }
+    setChunkedDataArray(result)
     return result;
   };
-  const chunkedDataArray = chunkArray(boardData, 3);
+  // const chunkedDataArray = chunkArray(boardData, 3);
 
   //page 변수 부분이 달라 질 떄 마다 BoardAll부분이 실행
   useEffect(() => {
@@ -47,6 +49,7 @@ function Hboard() {
       if (response.ok) {
         const data = await response.json();
         setBoardData(data);
+        chunkArray(data, 3)
         // console.log(data);
       } else {
         // console.log("게시판불러오기 실패");
@@ -82,62 +85,91 @@ function Hboard() {
     }
   };
 
+  const filterBoard = async (cateID) => {
+    const data = {
+        first : {
+        start : 1,
+        end : 9
+      }, cateID: cateID
+    };
+    try {
+      const response = await fetch(`/proxy/board/category`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data)
+        setBoardData(data);
+        chunkArray(data, 3)
+        // console.log(data);
+      } else {
+        // console.log("게시판불러오기 실패");
+      }
+    } catch (error) {
+      // console.error("게시판불러오기 실패", error);
+    }
+  };
+
   return (
     <div className="Hboard">
      <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'></link>
-        <div className='HboardBar'>
-            <div className="big-cate" id="first-big-cate" >
-              <i class='bx bx-run'></i>
-                <span>스포츠</span>
-                <div className="small-cate">
-                    <a href="#">런닝</a>
-                    <a href="#">배드민턴</a>
-                    <a href="#">테니스</a>
-                    <a href="#">골프</a>     
-                </div>    
-            </div>
-            <div className="big-cate">
-                <i class='bx bx-music' ></i>
-                <span>음악/미술</span>
-                <div className="small-cate">
-                    <a href="#">밴드</a>
-                    <a href="#">재즈</a>
-                    <a href="#">클래식</a>    
-                    <a href="#">댄스</a>  
-                </div>    
-            </div>
-            <div className="big-cate">
-                <i class='bx bx-trip' ></i>
-                <span>여행</span>
-                <div className="small-cate">
-                    <a href="#">국내</a>
-                    <a href="#">해외</a> 
-                </div>    
-            </div>
-            <div className="big-cate">
-                <i className='bx bxl-tiktok'></i>
-                <span>문화</span>
-                <div className="small-cate">
-                    <a href="#">공연</a>
-                    <a href="#">축제</a>
-                    <a href="#">박람회</a>   
-                    <a href="#">전시회</a>   
-                </div>    
-            </div>
-            <div className="big-cate">
-                <i class='bx bx-book-open' ></i>
-                <span>스터디</span>
-                <div className="small-cate">
-                    <a href="#">영화</a>
-                    <a href="#">음악</a>
-                    <a href="#">미술</a>    
-                </div>    
-            </div>
-            <div className="big-cate" id="last-big-cate" >
-                <i class='bx bx-menu' ></i>
-                <span>기타</span> 
-            </div>
-        </div>
+      <div className='HboardBar'>
+          <div className="big-cate" id="first-big-cate" >
+            <i class='bx bx-run'></i>
+              <span>스포츠</span>
+              <div className="small-cate">
+                  <button type="button" onClick={() => {filterBoard("S-002")}}>런닝</button>
+                  <a href="#">배드민턴</a>
+                  <a href="#">테니스</a>
+                  <a href="#">골프</a>     
+              </div>    
+          </div>
+          <div className="big-cate">
+              <i class='bx bx-music' ></i>
+              <span>음악/미술</span>
+              <div className="small-cate">
+                  <a href="#">밴드</a>
+                  <a href="#">재즈</a>
+                  <a href="#">클래식</a>    
+                  <a href="#">댄스</a>  
+              </div>    
+          </div>
+          <div className="big-cate">
+              <i class='bx bx-trip' ></i>
+              <span>여행</span>
+              <div className="small-cate">
+                  <a href="#">국내</a>
+                  <a href="#">해외</a> 
+              </div>    
+          </div>
+          <div className="big-cate">
+              <i className='bx bxl-tiktok'></i>
+              <span>문화</span>
+              <div className="small-cate">
+                  <a href="#">공연</a>
+                  <a href="#">축제</a>
+                  <a href="#">박람회</a>   
+                  <a href="#">전시회</a>   
+              </div>    
+          </div>
+          <div className="big-cate">
+              <i class='bx bx-book-open' ></i>
+              <span>스터디</span>
+              <div className="small-cate">
+                  <a href="#">영화</a>
+                  <a href="#">음악</a>
+                  <a href="#">미술</a>    
+              </div>    
+          </div>
+          <div className="big-cate" id="last-big-cate" >
+              <i class='bx bx-menu' ></i>
+              <span>기타</span> 
+          </div>
+      </div>
       <div className="HboardTable">
         <table className="HboardInTable">
           <tbody>
