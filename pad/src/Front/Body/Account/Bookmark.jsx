@@ -64,9 +64,9 @@ function Bookmark() {
         });
         if (response.ok) {
             const data = await response.json();
-            var count = data.total_rows / 9;
+            var count = data / 9;
             count = Math.floor(count);
-            if (data.total_rows % 9 > 0) {
+            if (data % 9 > 0) {
             count += 1;
             }
             //최대 페이지 개수

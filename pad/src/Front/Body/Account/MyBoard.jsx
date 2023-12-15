@@ -68,14 +68,14 @@ function MyBoard() {
       });
       if (response.ok) {
         const data = await response.json();
-        console.log(data, data.total_rows);
-        // var count = data.total_rows / 9;
-        // count = Math.floor(count);
-        // if (data.total_rows % 9 > 0) {
-        //   count += 1;
-        // }
-        // console.log(count);
-        //최대 페이지 개수
+        // console.log(data, data.total_rows);
+        var count = data / 9;
+        count = Math.floor(count);
+        if (data % 9 > 0) {
+          count += 1;
+        }
+        console.log(count);
+        // 최대 페이지 개수
         setMaxPage(data);
       } else {
         console.log("게시판카운트세기 실패");
