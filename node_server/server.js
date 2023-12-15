@@ -36,7 +36,7 @@ app.post('/node/board/image', upload.single('file'), (req, res) => {
   const imgName = req.file.filename;
 
   // 이동할 경로 설정 (React 앱의 public 폴더)
-  const destinationPath = path.join(__dirname, '../pad/public/image', imgName);
+  const destinationPath = path.join(__dirname, '../pad/public/images', imgName);
 
   // 파일 이동
   fs.rename(file.path, destinationPath, (err) => {

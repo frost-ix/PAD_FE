@@ -31,6 +31,7 @@ function ViewBoard(){
           });
           if (response.ok) {
             const data = await response.json();
+            console.log(data)
             setBoardIDinfo(data);
             setFavValue(data.favv)
           } else {
@@ -68,6 +69,7 @@ function ViewBoard(){
                             acc[key] = value;
                         }
                         return acc;
+
                     }, {});
                 }
                 if(tagName==='figure'){
@@ -114,7 +116,7 @@ function ViewBoard(){
       useEffect(() => {
         if (boardIDinfo) { // boardIDinfo가 로드되었을 때만 htmlString을 생성
             const htmlString = boardIDinfo.boardContent; // boardIDinfo.contents를 htmlString으로 사용
-            const imgPaths = Array.isArray(boardIDinfo.imgPath) ? boardIDinfo.imgPath : [];
+            const imgPaths = Array.isArray(boardIDinfo.imagePath) ? boardIDinfo.imagePath : [];
             const renderedHtml = extractElements(htmlString,imgPaths);
             setRenderdHtml(renderedHtml);
         }
