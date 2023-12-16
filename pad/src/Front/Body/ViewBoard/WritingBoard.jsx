@@ -94,8 +94,9 @@ function WritingBoard() {
         });
         if (response.ok) {
           navigate(-1);
+          alert("게시판 등록 성공");
         } else {
-          alert("게시판 올리기 실패");
+          alert("게시판 등록 실패");
         }
       } catch (error) {
         alert(error+"savadata");
